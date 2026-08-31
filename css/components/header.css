@@ -554,11 +554,12 @@
 	}
 }
 
-/* ─────────────────────────────────────────────── the demo's navigation ───
+/* ──────────────────────────────────────── the free edition's navigation ───
  *
- * Added by build.js --github, and present only in the GitHub copy. The nav
- * items with no page behind them go nowhere here, and the one link that does
- * leave is the one that says where to.
+ * Added by build.js when it assembles the free edition. The nav items with no
+ * page behind them go nowhere, and the one link that does leave is the one
+ * that says where to. Not part of the full template, which has every page
+ * these name and needs none of this.
  */
 
 /* Stood down: no page behind them, no store either. Still legible — these name

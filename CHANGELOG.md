@@ -13,6 +13,19 @@ update affects anything you have edited.
 
 ---
 
+## 1.1.2 — 31 August 2026
+
+- **Free edition: one link to the store, not a hundred and seventy-two.** Every
+  nav item with no page behind it used to become a link to the purchase page —
+  in the bar, the footer, the mega panels and the body. It read as a trap. Those
+  items now go nowhere, and one link in the bar goes to the store, styled as an
+  accent pill so it is obvious which one is which. Shop and Search are
+  unaffected, and the mega panels still open and still look like themselves.
+  **The full template is unchanged** — it ships every page these name and has
+  never carried an upgrade link. Files: `build.js` (free edition only).
+
+---
+
 ## 1.1.1 — 31 August 2026
 
 - **The hero no longer pauses on hover.** It still pauses while focus is inside
