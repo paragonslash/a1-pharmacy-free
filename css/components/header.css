@@ -561,13 +561,25 @@
  * leave is the one that says where to.
  */
 
-/* Stood down: no page, no store, no pointer. Still legible — these name the
-   pages the full edition has, which is the point of leaving them in the bar. */
+/* Stood down: no page behind them, no store either. Still legible — these name
+   the pages the full edition has, which is the point of leaving them in the bar.
+
+   They keep the pointer. An <a> with no href gets the arrow cursor by default,
+   and on a demo that reads as a broken link rather than a deliberate one: the
+   whole bar is here to be looked at, and half of it feeling dead underfoot is
+   worse than half of it going nowhere quietly. */
 .nav-link--inert,
 a.nav-link--inert:hover {
 	color: var(--color-ink-3);
-	cursor: default;
+	cursor: pointer;
 	opacity: 0.5;
+}
+
+/* Everything else the rewrite reached: mega-panel rows, footer columns, journal
+   cards, body buttons. Undimmed, so they still show the component off — and
+   still feel like the thing they look like. */
+[data-inert] {
+	cursor: pointer;
 }
 
 .site-header--over-media .nav-link--inert,
