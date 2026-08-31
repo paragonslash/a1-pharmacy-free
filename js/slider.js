@@ -11,8 +11,9 @@
  * markup is back to a single image between transitions. Change SLICE_COUNT to
  * taste — nothing else needs to know about it.
  *
- * Autoplay pauses on hover, while focus is inside, and while the tab is
- * hidden, and never starts under prefers-reduced-motion.
+ * Autoplay pauses while focus is inside and while the tab is hidden, and never
+ * starts under prefers-reduced-motion. Hover does not pause it: the hero is
+ * full-bleed, so that would stop it almost all of the time.
  *
  * Include on pages with [data-hero-carousel]:
  *   <script src="js/slider.js" defer></script>
@@ -225,9 +226,13 @@ window.A1 = window.A1 || {};
 			}
 		});
 
-		// Nothing should move under someone who's reading or tabbing through it.
-		carousel.addEventListener('mouseenter', () => suspend(true));
-		carousel.addEventListener('mouseleave', () => suspend(false));
+		/*
+		 * Nothing should move under someone tabbing through it — but hover is
+		 * not that signal. The hero fills the screen, so a pointer resting
+		 * anywhere over it stops the rotation, and the most common way to see
+		 * this carousel is to watch it not move. The pause button is still
+		 * there for anyone who actually wants it stopped.
+		 */
 		carousel.addEventListener('focusin', () => suspend(true));
 		carousel.addEventListener('focusout', () => suspend(false));
 		document.addEventListener('visibilitychange', () => suspend(document.hidden));
