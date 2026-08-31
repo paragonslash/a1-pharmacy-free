@@ -1,0 +1,75 @@
+/*
+ * Star rating.
+ *
+ * A filled row is clipped over an empty one, so a partial star stays crisp at
+ * any size and no half-star glyph is needed. The fill width is set inline as
+ * `--rating-fill` (rating ÷ 5, as a percentage).
+ *
+ * The whole graphic is aria-hidden; the accessible name lives on the wrapper's
+ * `aria-label`, which reads "Rated 4.8 out of 5 from 512 reviews".
+ */
+
+.rating {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.rating__stars {
+	position: relative;
+	display: inline-flex;
+}
+
+.rating__row {
+	display: flex;
+	gap: 0.125rem;
+}
+
+.rating__row--empty {
+	color: var(--color-ink-5);
+}
+
+.rating__row--filled {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	color: var(--color-caution);
+	width: var(--rating-fill, 0%);
+}
+
+.rating__row--filled svg {
+	flex: none;
+}
+
+.rating__star {
+	width: 0.875rem;
+	height: 0.875rem;
+}
+
+.rating--sm .rating__star {
+	width: 0.75rem;
+	height: 0.75rem;
+}
+
+.rating--lg .rating__star {
+	width: 1.05rem;
+	height: 1.05rem;
+}
+
+/* On a dark surface the empty row becomes translucent paper. */
+[data-surface='dark'] .rating__row--empty {
+	color: var(--paper-60);
+}
+
+.rating__value {
+	font-size: 0.8125rem;
+	font-weight: 500;
+	color: var(--color-ink-2);
+	font-variant-numeric: tabular-nums;
+}
+
+.rating__count {
+	font-size: 0.8125rem;
+	color: var(--color-ink-3);
+	font-variant-numeric: tabular-nums;
+}

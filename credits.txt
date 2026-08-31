@@ -1,0 +1,60 @@
+IMAGE CREDITS
+=============
+
+The images in this download are GENERATED PLACEHOLDERS. They match the
+dimensions of the photography used on the demo site so that every layout
+renders at the correct proportions, but they are not photographs and carry no
+licence restrictions of their own.
+
+Replace them with your own photography, or with images you have licensed, before
+publishing.
+
+
+--------------------------------------------------------------------------
+WHY THE REAL PHOTOGRAPHY IS NOT INCLUDED
+--------------------------------------------------------------------------
+
+The photography on the live demo is licensed for display on that demo only. It
+is not licensed for redistribution inside a template that other people download
+— which is a separate, commercial use — and the portraits are of identifiable
+people, which additionally requires a model release.
+
+Rather than ship images we cannot grant you rights to, the download contains
+placeholders at identical dimensions. Nothing reflows when you swap yours in.
+
+
+--------------------------------------------------------------------------
+WHAT GOES WHERE
+--------------------------------------------------------------------------
+
+  images/products/     1100 x 1100   Packshots, square, shot on white
+  images/people/        900 x 1200   Staff portraits, 3:4
+  images/editorial/    varies        Full-bleed interior / counter photography
+  images/journal/      varies        Article header images, landscape
+
+Filenames are referenced directly in the HTML. Keep them, and keep the aspect
+ratios, and no markup or CSS needs to change.
+
+
+--------------------------------------------------------------------------
+FONTS
+--------------------------------------------------------------------------
+
+Archivo         SIL Open Font License 1.1   fonts/Archivo-OFL.txt
+                Copyright 2020 The Archivo Project Authors
+                https://github.com/Omnibus-Type/Archivo
+
+IBM Plex Mono   SIL Open Font License 1.1   fonts/IBMPlexMono-OFL.txt
+                Copyright 2017 IBM Corp.
+                https://github.com/IBM/plex
+
+Both are bundled under the OFL, which permits redistribution as part of this
+template. Neither may be sold on its own.
+
+
+--------------------------------------------------------------------------
+ICONS
+--------------------------------------------------------------------------
+
+All icons are inline SVG written for this template. No icon font or third-party
+icon set is used, and there is nothing further to attribute.

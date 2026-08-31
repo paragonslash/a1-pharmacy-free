@@ -1,0 +1,55 @@
+/*
+ * Quantity stepper — a ruled box holding decrement, value, increment.
+ *
+ * Used on the product page and on every line in the bag. The buttons are real
+ * <button> elements with accessible names that include the product, because on
+ * the bag page there are several steppers and "Increase quantity" alone would
+ * not say of what.
+ */
+
+.quantity {
+	display: flex;
+	align-items: center;
+	border: 1px solid var(--ink-20);
+}
+
+.quantity__button {
+	display: grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 3rem;
+	color: var(--color-ink-2);
+	transition: color var(--duration-swift) var(--ease-linear-out);
+}
+
+.quantity__button:hover:not(:disabled) {
+	color: var(--color-ink);
+}
+
+.quantity__button:disabled {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.quantity__button svg {
+	width: 0.75rem;
+	height: 0.75rem;
+}
+
+.quantity__value {
+	width: 2rem;
+	text-align: center;
+	font-family: var(--font-mono);
+	font-size: 0.875rem;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Compact variant, for bag lines. */
+.quantity--sm .quantity__button {
+	width: 2.25rem;
+	height: 2.25rem;
+}
+
+.quantity--sm .quantity__value {
+	font-size: 0.8125rem;
+}

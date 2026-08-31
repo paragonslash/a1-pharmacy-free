@@ -1,0 +1,555 @@
+/*
+ * Site header — fixed bar, wordmark, primary navigation, utilities, and the
+ * two mega panels.
+ *
+ * The bar has two characters, switched by `.site-header--over-media`:
+ *
+ *   over media  transparent, light type. Set on pages whose first section is a
+ *               full-bleed dark hero that runs underneath the header. js/header.js
+ *               removes it once the page scrolls past the hero, or while a mega
+ *               panel is open.
+ *   resting     white, blurred, hairline-ruled, dark type. The default.
+ *
+ * The class and `<body data-full-bleed>` are a pair: header.js reads the body
+ * attribute to decide whether the bar may go transparent at all, so a page that
+ * ships the class without the attribute would have light type on a light
+ * background until the first scroll — and no type at all with scripting off.
+ * Add or remove the two together. Four pages carry them: the home page, about,
+ * prescriptions and services.
+ */
+
+.skip-link {
+	position: fixed;
+	left: 1.25rem;
+	top: 1.25rem;
+	z-index: var(--z-skip);
+	background-color: var(--color-ink);
+	color: #fff;
+	padding: 0.75rem 1.25rem;
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+}
+
+.site-header {
+	position: fixed;
+	inset-inline: 0;
+	top: 0;
+	z-index: var(--z-header);
+	border-bottom: 1px solid var(--ink-12);
+	background-color: rgb(255 255 255 / 0.92);
+	backdrop-filter: blur(12px);
+	transition:
+		background-color var(--duration-slow) var(--ease-precise),
+		border-color var(--duration-slow) var(--ease-precise);
+}
+
+.site-header--over-media {
+	background-color: transparent;
+	border-bottom-color: transparent;
+	backdrop-filter: none;
+}
+
+.site-header__inner {
+	margin-inline: 1.25rem;
+}
+
+.site-header__bar {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+	height: 4rem;
+}
+
+@media (width >= 64rem) {
+	.site-header__inner {
+		margin-inline: 1.75rem;
+	}
+
+	.site-header__bar {
+		grid-template-columns: 1fr auto 1fr;
+		height: 4.5rem;
+	}
+}
+
+/* ─────────────────────────────────────────────────────── wordmark ───── */
+
+.logo {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.625rem;
+	justify-self: start;
+}
+
+.logo__mark {
+	display: grid;
+	place-items: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	flex: none;
+	background-color: var(--color-signal);
+	color: #fff;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -0.01em;
+}
+
+.logo__name {
+	font-size: 0.8125rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	color: var(--color-ink);
+}
+
+/* Light tone — over dark media, and in the footer. */
+.logo--light .logo__mark {
+	background-color: #fff;
+	color: var(--color-ink);
+}
+
+.logo--light .logo__name {
+	color: #fff;
+}
+
+.site-header--over-media .logo__mark {
+	background-color: #fff;
+	color: var(--color-ink);
+}
+
+.site-header--over-media .logo__name {
+	color: #fff;
+}
+
+/* ───────────────────────────────────────────── the navigation link ───── */
+
+/*
+ * One link treatment across the whole bar: mono, uppercase, letterspaced. The
+ * three tones (resting, active, over-media) differ only in colour.
+ */
+.nav-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.16em;
+	color: var(--color-ink-3);
+	transition: color var(--duration-calm) var(--ease-linear-out);
+}
+
+.nav-link:hover,
+.nav-link[aria-current='page'],
+.nav-link[aria-expanded='true'] {
+	color: var(--color-ink);
+}
+
+.nav-link__icon {
+	width: 1rem;
+	height: 1rem;
+	flex: none;
+}
+
+.site-header--over-media .nav-link {
+	color: var(--paper-70);
+}
+
+.site-header--over-media .nav-link:hover,
+.site-header--over-media .nav-link[aria-current='page'],
+.site-header--over-media .nav-link[aria-expanded='true'] {
+	color: #fff;
+}
+
+/* The bag link is always at full strength — it carries a count. */
+.nav-link--emphasis {
+	color: var(--color-ink);
+}
+
+.site-header--over-media .nav-link--emphasis {
+	color: #fff;
+}
+
+/* ────────────────────────────────────────────── primary navigation ───── */
+
+.primary-nav {
+	display: none;
+}
+
+@media (width >= 64rem) {
+	.primary-nav {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		justify-self: center;
+	}
+}
+
+/* ────────────────────────────────────────────────────── utilities ───── */
+
+.header-tools {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 1.25rem;
+}
+
+/* Search and Account collapse away on the narrowest screens. */
+.header-tools__optional {
+	display: none;
+}
+
+@media (width >= 40rem) {
+	.header-tools__optional {
+		display: inline-flex;
+	}
+}
+
+/* ──────────────────────────────────────────────────────────── bag ───── */
+
+.bag {
+	position: relative;
+}
+
+.bag__icon-wrap {
+	position: relative;
+	display: inline-flex;
+}
+
+.bag__count {
+	position: absolute;
+	right: -0.375rem;
+	top: -0.375rem;
+	display: grid;
+	place-items: center;
+	height: 0.9rem;
+	min-width: 0.9rem;
+	padding-inline: 0.25rem;
+	background-color: var(--color-accent);
+	color: var(--color-signal-dark);
+	font-size: 0.5rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Hover preview. A convenience only — the bag itself is a plain link to
+ * cart.html, so nothing here is reachable by hovering alone.
+ */
+.bag__preview {
+	position: absolute;
+	right: 0;
+	top: 100%;
+	width: 20rem;
+	border: 1px solid var(--color-line);
+	background-color: var(--color-surface);
+	padding: 1rem;
+	box-shadow: var(--shadow-card);
+	animation: drop-in 200ms var(--ease-precise) both;
+}
+
+/* Pointer-driven, so it never appears on touch devices. */
+@media (hover: none) {
+	.bag__preview {
+		display: none !important;
+	}
+}
+
+.bag__lines {
+	margin-top: 1rem;
+	max-height: 16rem;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.bag__line {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.75rem;
+	font-size: 0.8125rem;
+}
+
+.bag__line-name {
+	color: var(--color-ink-2);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.bag__line-quantity {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}
+
+.bag__line-total {
+	flex: none;
+	font-family: var(--font-mono);
+	color: var(--color-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.bag__subtotal {
+	margin-top: 1rem;
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	border-top: 1px solid var(--color-line);
+	padding-top: 0.75rem;
+	font-size: 0.875rem;
+	color: var(--color-ink-2);
+}
+
+.bag__subtotal-value {
+	font-family: var(--font-mono);
+	font-weight: 600;
+	color: var(--color-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.bag__actions {
+	margin-top: 1rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.5rem;
+}
+
+/* ────────────────────────────────────────────────── menu toggle ───── */
+
+.menu-toggle {
+	position: relative;
+	width: 1.5rem;
+	height: 1rem;
+	color: var(--color-ink);
+}
+
+@media (width >= 64rem) {
+	.menu-toggle {
+		display: none;
+	}
+}
+
+.site-header--over-media .menu-toggle {
+	color: #fff;
+}
+
+.menu-toggle__bar {
+	position: absolute;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 1px;
+	background-color: currentColor;
+	transition: all 420ms var(--ease-precise);
+}
+
+.menu-toggle__bar:first-child {
+	top: 0.25rem;
+}
+
+.menu-toggle__bar:last-child {
+	top: calc(100% - 0.25rem);
+}
+
+.menu-toggle[aria-expanded='true'] .menu-toggle__bar:first-child {
+	top: 50%;
+	transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded='true'] .menu-toggle__bar:last-child {
+	top: 50%;
+	transform: rotate(-45deg);
+}
+
+/* ───────────────────────────────────────────────────── mega panel ───── */
+
+.mega-panel {
+	display: none;
+	position: absolute;
+	inset-inline: 0;
+	top: 100%;
+	border-block: 1px solid var(--ink-12);
+	background-color: #fff;
+	animation: drop-in 280ms var(--ease-precise) both;
+}
+
+/* Pointer-driven and wide — never opened on small screens. */
+@media (width >= 64rem) {
+	.mega-panel[data-open] {
+		display: block;
+	}
+}
+
+.mega-panel__inner {
+	margin-inline: 1.75rem;
+	padding-block: 3rem;
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+}
+
+.mega-panel__heading {
+	grid-column: span 2;
+}
+
+/*
+ * The ruled index of categories.
+ *
+ * Rows deliberately stretch to fill the panel — its height is set by the taller
+ * "Selected" column beside it, and that spare height is what opens up the space
+ * beneath each category name. Do not add `align-content: start` here.
+ */
+.mega-index {
+	grid-column: span 6;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	column-gap: 2rem;
+}
+
+.mega-index--wide {
+	grid-column: span 10;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mega-index__item {
+	border-bottom: 1px solid var(--ink-10);
+}
+
+.mega-index__link {
+	display: flex;
+	align-items: baseline;
+	gap: 1rem;
+	padding-block: 0.75rem;
+}
+
+.mega-index__name {
+	font-family: var(--font-display);
+	font-size: 1.25rem;
+	font-weight: 600;
+	font-stretch: 96%;
+	letter-spacing: -0.01em;
+	color: var(--color-ink);
+	transition: opacity var(--duration-calm) var(--ease-linear-out);
+}
+
+.mega-index__link:hover .mega-index__name {
+	opacity: 0.55;
+}
+
+/* Services entries carry a summary line under the name. */
+.mega-index__link--stacked {
+	display: block;
+	padding-block: 1rem;
+}
+
+.mega-index__row {
+	display: flex;
+	align-items: baseline;
+	gap: 0.75rem;
+}
+
+.mega-index__summary {
+	margin-top: 0.5rem;
+	padding-left: 2rem;
+	font-size: 0.8125rem;
+	line-height: 1.6;
+	color: var(--color-ink-3);
+}
+
+/* Two featured packshots at the right edge of the shop panel. */
+.mega-featured {
+	grid-column: span 4;
+}
+
+.mega-featured__grid {
+	margin-top: 1.25rem;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.mega-featured__image {
+	transition: opacity var(--duration-slow) var(--ease-linear-out);
+}
+
+.mega-featured__link:hover .mega-featured__image {
+	opacity: 0.8;
+}
+
+.mega-featured__item-no {
+	margin-top: 0.75rem;
+	font-family: var(--font-mono);
+	font-size: 0.625rem;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: var(--color-ink-3);
+}
+
+.mega-featured__name {
+	margin-top: 0.25rem;
+	font-size: 0.8125rem;
+	line-height: 1.35;
+	color: var(--color-ink);
+}
+
+.mega-featured__price {
+	margin-top: 0.25rem;
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	color: var(--color-ink-3);
+	font-variant-numeric: tabular-nums;
+}
+
+/* "+2 more" under a truncated preview list. */
+.bag__more {
+	margin-top: 0.5rem;
+}
+
+/*
+ * No scripting: keep the resting bar.
+ *
+ * The transparent character depends on js/header.js handing the bar back to
+ * resting once the hero has scrolled away. With scripting off that never
+ * happens, so light type would carry on over the light content below and the
+ * whole bar would disappear. A solid header over the hero is a small
+ * aesthetic loss next to an unreadable one.
+ *
+ * Written as an override rather than by wrapping the rules above in
+ * `scripting: enabled`, so a browser that doesn't know the feature simply
+ * behaves as it always did instead of losing the treatment entirely.
+ */
+@media (scripting: none) {
+	.site-header--over-media {
+		background-color: rgb(255 255 255 / 0.92);
+		border-bottom-color: var(--ink-12);
+		backdrop-filter: blur(12px);
+	}
+
+	.site-header--over-media .logo__mark {
+		background-color: var(--color-signal);
+		color: #fff;
+	}
+
+	.site-header--over-media .logo__name {
+		color: var(--color-ink);
+	}
+
+	.site-header--over-media .nav-link {
+		color: var(--color-ink-3);
+	}
+
+	.site-header--over-media .nav-link:hover,
+	.site-header--over-media .nav-link[aria-current='page'],
+	.site-header--over-media .nav-link[aria-expanded='true'],
+	.site-header--over-media .nav-link--emphasis {
+		color: var(--color-ink);
+	}
+
+	.site-header--over-media .menu-toggle {
+		color: var(--color-ink);
+	}
+}

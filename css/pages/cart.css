@@ -1,0 +1,258 @@
+/*
+ * Bag page — lines on the left, summary panel on the right.
+ *
+ * The lines are built by js/bag-page.js from the <template> in cart.html,
+ * because the bag only exists in localStorage. Everything here styles markup
+ * that is in the HTML file either way.
+ */
+
+.bag-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1.5rem;
+	padding-block: 4rem;
+}
+
+.bag-empty__body {
+	max-width: 28rem;
+	color: var(--color-ink-2);
+}
+
+.bag-layout {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 3rem;
+	padding-top: 2rem;
+}
+
+.bag-lines,
+.bag-summary {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.bag-lines {
+		grid-column: span 7;
+	}
+
+	.bag-summary {
+		grid-column: 9 / span 4;
+	}
+}
+
+/* ───────────────────────────────────────────────────────── lines ───── */
+
+.bag-line {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 1.25rem;
+	border-bottom: 1px solid var(--color-line);
+	padding-block: 1.5rem;
+}
+
+.bag-line__thumb {
+	grid-column: span 3;
+	background-color: var(--color-surface);
+	/* Without this the anchor stretches to the row's height while the plate
+	   inside keeps its 1/1 ratio, leaving a strip of surface below the image
+	   on any line tall enough to wrap. */
+	align-self: start;
+}
+
+.bag-line__detail {
+	grid-column: span 9;
+}
+
+@media (width >= 40rem) {
+	.bag-line__thumb {
+		grid-column: span 2;
+	}
+
+	.bag-line__detail {
+		grid-column: span 10;
+	}
+}
+
+.bag-line__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	column-gap: 1.5rem;
+	row-gap: 0.25rem;
+}
+
+.bag-line__name {
+	font-size: 0.9375rem;
+	font-weight: 600;
+	color: var(--color-ink);
+	transition: color var(--duration-swift) var(--ease-linear-out);
+}
+
+.bag-line__name:hover {
+	color: var(--color-signal);
+}
+
+.bag-line__total {
+	font-family: var(--font-mono);
+	font-size: 0.875rem;
+	color: var(--color-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.bag-line__subtitle {
+	margin-top: 0.25rem;
+}
+
+.bag-line__controls {
+	margin-top: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.bag-line__remove {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+	transition: color var(--duration-swift) var(--ease-linear-out);
+}
+
+.bag-line__remove:hover {
+	color: var(--color-danger);
+}
+
+/* ─────────────────────────────────────────────────────── summary ───── */
+
+.bag-summary__panel {
+	border: 1px solid var(--color-line);
+	background-color: var(--color-surface);
+	padding: 1.5rem;
+}
+
+.bag-summary__totals {
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	font-size: 0.875rem;
+}
+
+.bag-summary__row {
+	display: flex;
+	justify-content: space-between;
+	color: var(--color-ink-2);
+}
+
+.bag-summary__row dd {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}
+
+.bag-summary__row--total {
+	border-top: 1px solid var(--color-line);
+	padding-top: 0.75rem;
+	font-weight: 600;
+	color: var(--color-ink);
+}
+
+.bag-summary__progress {
+	margin-top: 1.25rem;
+}
+
+.bag-summary__track {
+	margin-top: 0.5rem;
+	height: 3px;
+	background-color: var(--color-canvas-2);
+}
+
+.bag-summary__bar {
+	height: 100%;
+	background-color: var(--color-accent);
+	transition: width var(--duration-slow) var(--ease-precise);
+}
+
+.bag-summary__advice {
+	margin-top: 1.25rem;
+	border-left: 2px solid var(--color-signal);
+	background-color: var(--color-canvas);
+	padding: 0.75rem;
+	font-size: 0.75rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.bag-summary__actions {
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.625rem;
+}
+
+/* ───────────────────────────────────────────────── order summary ───── */
+
+/* Shared with checkout, which links this file too. */
+.order-summary__panel {
+	border: 1px solid var(--color-line);
+	background-color: var(--color-surface);
+	padding: 1.5rem;
+}
+
+.order-summary__lines {
+	margin-top: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.order-summary__line {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+	font-size: 0.8125rem;
+	color: var(--color-ink-2);
+}
+
+.order-summary__quantity {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}
+
+.order-summary__value {
+	flex: none;
+	font-family: var(--font-mono);
+	color: var(--color-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.order-summary__totals {
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	border-top: 1px solid var(--color-line);
+	padding-top: 1.25rem;
+	font-size: 0.875rem;
+}
+
+.order-summary__row {
+	display: flex;
+	justify-content: space-between;
+	color: var(--color-ink-2);
+}
+
+.order-summary__row dd {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}
+
+.order-summary__row--total {
+	border-top: 1px solid var(--color-line);
+	padding-top: 0.75rem;
+	font-weight: 600;
+	color: var(--color-ink);
+}

@@ -1,0 +1,171 @@
+/*
+ * A1 Pharmacy — design tokens
+ * ---------------------------
+ * Spacious, minimal, technical. The reference is medical instrumentation and
+ * product design, not botany: a near-white canvas, near-black ink, one
+ * saturated pharmacy green, and monospace for every number.
+ *
+ * Deliberate constraints:
+ *   · Square corners. No decorative radius anywhere.
+ *   · Two typefaces only — a technical grotesque and a mono for data.
+ *   · Colour is structural, never ornamental. Green means "pharmacy", and is
+ *     used for action and status, never as a wash or a tint.
+ *   · Space does the work that decoration would otherwise do.
+ *
+ * Every value the rest of the stylesheets use is declared here. Rebranding the
+ * template is, in the ordinary case, a matter of editing this file alone.
+ */
+
+:root {
+	/* ---------------------------------------------------------------- fonts */
+	/* Archivo carries width and weight axes, so display and interface text can
+	   share one family without the headline looking like enlarged body copy. */
+	--font-sans: 'Archivo Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+	--font-display: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+	/* Doses, prices, reference numbers, timestamps. */
+	--font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+	/* --------------------------------------------------------------- canvas */
+	/* Cool and clinical rather than warm — this is a dispensary, not a spa. */
+	--color-canvas: #f2f3f1;
+	--color-canvas-2: #e7e9e6;
+	--color-surface: #ffffff;
+	--color-line: #d8dcd8;
+
+	/* ------------------------------------------------------------------ ink */
+	--color-ink: #0a0f0c;
+	--color-ink-2: #363c38;
+	--color-ink-3: #666d68;
+	--color-ink-4: #969c98;
+	--color-ink-5: #c2c7c3;
+
+	/* --------------------------------------------------------------- signal */
+	/* Dark green is the brand: large flat fields, primary actions, dark
+	   sections. Deep enough to carry white type at any size, and to make the
+	   yellow-green accent sing against it. */
+	--color-signal: #072a1d;
+	--color-signal-dark: #041b12;
+	--color-signal-bright: #0f4530;
+	--color-signal-tint: #e0e9e4;
+
+	/* --------------------------------------------------------------- accent */
+	/* Yellow-green. Deployed sparingly and at small scale — live status, the
+	   active progress segment, hover states, and the one thing on a page that
+	   must be found. Never as a background for body text. */
+	--color-accent: #cdeb3f;
+	--color-accent-dark: #a8c422;
+	--color-accent-tint: #f2f8d4;
+
+	/* ------------------------------------------------------------- semantic */
+	--color-danger: #c8321a;
+	--color-danger-tint: #fbe7e3;
+	--color-caution: #a76a00;
+	--color-caution-tint: #fdf0da;
+
+	/* Translucent ink and paper, for hairlines drawn over unknown backgrounds. */
+	--ink-08: rgb(10 15 12 / 0.08);
+	--ink-10: rgb(10 15 12 / 0.1);
+	--ink-12: rgb(10 15 12 / 0.12);
+	--ink-15: rgb(10 15 12 / 0.15);
+	--ink-20: rgb(10 15 12 / 0.2);
+	--ink-25: rgb(10 15 12 / 0.25);
+	--ink-70: rgb(10 15 12 / 0.7);
+	--paper-10: rgb(255 255 255 / 0.1);
+	--paper-12: rgb(255 255 255 / 0.12);
+	--paper-15: rgb(255 255 255 / 0.15);
+	--paper-20: rgb(255 255 255 / 0.2);
+	--paper-25: rgb(255 255 255 / 0.25);
+	--paper-30: rgb(255 255 255 / 0.3);
+	--paper-45: rgb(255 255 255 / 0.45);
+	--paper-55: rgb(255 255 255 / 0.55);
+	--paper-60: rgb(255 255 255 / 0.6);
+	--paper-70: rgb(255 255 255 / 0.7);
+	--paper-75: rgb(255 255 255 / 0.75);
+	--paper-80: rgb(255 255 255 / 0.8);
+
+	/* ------------------------------------------------------------ type scale */
+	/* A wide gap between display and interface sizes. Big statements, small
+	   precise everything-else — that contrast is what reads as spacious. */
+	--text-d1: clamp(2.75rem, 7.5vw, 7rem);
+	--leading-d1: 0.94;
+	--tracking-d1: -0.035em;
+
+	--text-d2: clamp(2.25rem, 5vw, 4.5rem);
+	--leading-d2: 0.98;
+	--tracking-d2: -0.032em;
+
+	--text-d3: clamp(1.75rem, 3.2vw, 2.75rem);
+	--leading-d3: 1.04;
+	--tracking-d3: -0.026em;
+
+	--text-h1: clamp(1.5rem, 2.4vw, 2rem);
+	--leading-h1: 1.12;
+	--tracking-h1: -0.022em;
+
+	--text-h2: clamp(1.25rem, 1.8vw, 1.5rem);
+	--leading-h2: 1.2;
+	--tracking-h2: -0.018em;
+
+	--text-h3: 1.0625rem;
+	--leading-h3: 1.35;
+	--tracking-h3: -0.012em;
+
+	--text-lead: clamp(1rem, 1.15vw, 1.125rem);
+	--leading-lead: 1.62;
+	--tracking-lead: -0.008em;
+
+	/* Monospace label — section markers, field labels, metadata. */
+	--text-label: 0.6875rem;
+	--tracking-label: 0.12em;
+
+	--text-data: 0.75rem;
+	--leading-data: 1.5;
+	--tracking-data: 0.005em;
+
+	/* --------------------------------------------------------------- easing */
+	--ease-precise: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-linear-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--ease-glide: cubic-bezier(0.65, 0, 0.35, 1);
+	/* The reveal curve. Named separately so motion can be retimed on its own. */
+	--ease-archive: cubic-bezier(0.16, 1, 0.3, 1);
+
+	/* ------------------------------------------------------------- duration */
+	--duration-swift: 150ms;
+	--duration-calm: 320ms;
+	--duration-slow: 600ms;
+
+	/* ---------------------------------------------------------------- shell */
+	/* Page gutters, widened at each breakpoint. */
+	--shell-max: 96rem;
+	--shell-max-tight: 48rem;
+	--shell-max-wide: 120rem;
+	--shell-gutter: 1.25rem;
+
+	/* --------------------------------------------------------------- header */
+	--header-height: 4rem;
+
+	/* -------------------------------------------------------------- shadows */
+	/* Barely there. Depth comes from rules and tone. */
+	--shadow-card: 0 1px 2px rgb(11 12 11 / 0.04), 0 16px 32px -24px rgb(11 12 11 / 0.3);
+	--shadow-raised: 0 24px 48px -32px rgb(11 12 11 / 0.4);
+
+	/* ---------------------------------------------------------------- layer */
+	--z-rail: 40;
+	--z-header: 50;
+	--z-overlay: 60;
+	--z-toast: 100;
+	--z-skip: 120;
+}
+
+@media (width >= 40rem) {
+	:root {
+		--shell-gutter: 2rem;
+	}
+}
+
+@media (width >= 64rem) {
+	:root {
+		--shell-gutter: 3rem;
+		--header-height: 4.5rem;
+	}
+}

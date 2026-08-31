@@ -1,0 +1,490 @@
+/*
+ * Form controls.
+ *
+ * Text inputs use a floating label: it rests raised, and only drops back into
+ * the control while the field is empty and unfocused. That is driven entirely
+ * by `:placeholder-shown`, so it needs no JavaScript — but it does need a
+ * placeholder to be present. A single space is enough, and every text input in
+ * the template carries `placeholder=" "` for exactly this reason.
+ *
+ * Selects and textareas use a conventional label above the control, because a
+ * select is never empty and a textarea is too tall for the label to travel.
+ */
+
+.field {
+	display: block;
+}
+
+.field__control-wrap {
+	position: relative;
+}
+
+/* Shared skin for every control. */
+.field__control {
+	width: 100%;
+	border: 1px solid var(--ink-15);
+	background-color: var(--color-surface);
+	padding-inline: 1rem;
+	font-size: 0.9375rem;
+	color: var(--color-ink);
+	transition:
+		border-color var(--duration-calm) var(--ease-linear-out),
+		box-shadow var(--duration-calm) var(--ease-linear-out);
+}
+
+.field__control::placeholder {
+	color: transparent;
+}
+
+.field__control:hover {
+	border-color: rgb(10 15 12 / 0.3);
+}
+
+.field__control:focus {
+	outline: none;
+	border-color: var(--color-signal);
+	box-shadow: 0 0 0 2px rgb(7 42 29 / 0.15);
+}
+
+/* Text and select controls share a height; the input reserves room for the
+   raised label by padding its top edge. */
+.field__control--input,
+.field__control--select {
+	height: 3.5rem;
+}
+
+.field__control--input {
+	padding-top: 1.75rem;
+	padding-bottom: 0.5rem;
+}
+
+.field__control--select {
+	appearance: none;
+	padding-block: 0.75rem;
+	padding-right: 2.5rem;
+	cursor: pointer;
+}
+
+.field__control--textarea {
+	padding-block: 0.875rem;
+	resize: vertical;
+	line-height: 1.6;
+}
+
+.field__chevron {
+	pointer-events: none;
+	position: absolute;
+	right: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 1rem;
+	height: 1rem;
+	color: var(--color-ink-3);
+}
+
+/* ─────────────────────────────────────────────────── floating label ───── */
+
+.field__label-floating {
+	pointer-events: none;
+	position: absolute;
+	left: 1rem;
+	top: 0.375rem;
+	transform-origin: top left;
+	transform: scale(0.78);
+	font-size: 0.9375rem;
+	color: var(--color-ink-3);
+	transition: all 280ms var(--ease-precise);
+}
+
+/* Rest state: centred in the control, at full size. */
+.field__control--input:placeholder-shown + .field__label-floating {
+	top: 50%;
+	transform: translateY(-50%) scale(1);
+}
+
+/* Focus wins over the rest state, so it is declared last. */
+.field__control--input:focus + .field__label-floating {
+	top: 0.375rem;
+	transform: scale(0.78);
+	color: var(--color-signal);
+}
+
+/* Conventional label, above the control. */
+.field__label {
+	display: block;
+	margin-bottom: 0.375rem;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	color: var(--color-ink-2);
+}
+
+.field__required {
+	color: var(--color-danger);
+}
+
+/* ──────────────────────────────────────────────── hints and errors ───── */
+
+.field__hint {
+	margin-top: 0.375rem;
+	font-size: 0.75rem;
+	color: var(--color-ink-3);
+}
+
+.field__error {
+	margin-top: 0.375rem;
+	display: flex;
+	align-items: center;
+	gap: 0.375rem;
+	font-size: 0.75rem;
+	color: var(--color-danger);
+}
+
+.field__error svg {
+	width: 0.875rem;
+	height: 0.875rem;
+	flex: none;
+}
+
+/* Invalid state. Driven by `aria-invalid`, the same attribute assistive
+   technology reads, so the two can never disagree. */
+.field__control[aria-invalid='true'] {
+	border-color: var(--color-danger);
+}
+
+.field__control[aria-invalid='true']:focus {
+	border-color: var(--color-danger);
+	box-shadow: 0 0 0 2px rgb(200 50 26 / 0.2);
+}
+
+/* ──────────────────────────────────────────────────────── choices ───── */
+
+.checkbox-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
+	cursor: pointer;
+	font-size: 0.875rem;
+	color: var(--color-ink-2);
+}
+
+.checkbox-row__box {
+	margin-top: 0.25rem;
+	width: 1rem;
+	height: 1rem;
+	flex: none;
+}
+
+/* A radio rendered as a selectable card — checkout's delivery/collection pair. */
+.choice-card {
+	display: block;
+	cursor: pointer;
+	border: 1px solid var(--color-line);
+	padding: 1.25rem;
+	transition: border-color var(--duration-swift) var(--ease-linear-out);
+}
+
+.choice-card:hover {
+	border-color: rgb(10 15 12 / 0.4);
+}
+
+.choice-card:has(input:checked) {
+	border-color: var(--color-signal);
+	background-color: var(--color-surface);
+}
+
+.choice-card:has(input:focus-visible) {
+	outline: 2px solid var(--color-signal);
+	outline-offset: 2px;
+}
+
+.choice-card__title {
+	display: block;
+	font-size: 0.9375rem;
+	font-weight: 600;
+	color: var(--color-ink);
+}
+
+.choice-card__detail {
+	display: block;
+	margin-top: 0.25rem;
+}
+
+/* ────────────────────────────────────────────────────────── layout ───── */
+
+/* Two-column form grid, collapsing to one on narrow screens. */
+.form-grid {
+	display: grid;
+	gap: 1.25rem;
+}
+
+@media (width >= 40rem) {
+	.form-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.form-grid__full {
+		grid-column: 1 / -1;
+	}
+}
+
+/* ───────────────────────────────────────────────── date &amp; time ───── */
+
+/* Native date/time inputs already inherit .field__control — this just tints
+   the built-in picker glyph to sit quietly until it's actually useful. */
+.field__control--input[type='date']::-webkit-calendar-picker-indicator,
+.field__control--input[type='time']::-webkit-calendar-picker-indicator {
+	cursor: pointer;
+	opacity: 0.6;
+	transition: opacity var(--duration-swift) var(--ease-linear-out);
+}
+
+.field__control--input[type='date']:hover::-webkit-calendar-picker-indicator,
+.field__control--input[type='time']:hover::-webkit-calendar-picker-indicator {
+	opacity: 1;
+}
+
+/* Two linked date fields. js/forms.js sets each one's min/max off the
+   other's value on change — pure enhancement, both fields work unwired. */
+.date-range {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.date-range .field {
+	flex: 1;
+	min-width: 0;
+}
+
+.date-range__sep {
+	flex: none;
+	margin-top: 1rem;
+	color: var(--color-ink-4);
+}
+
+/* ────────────────────────────────────────────────────────── switch ───── */
+
+/* A checkbox, semantically — <input type="checkbox"> underneath, styled as a
+   track and thumb instead of a box. Pair it with .checkbox-row for the label. */
+.switch-box {
+	appearance: none;
+	flex: none;
+	margin-top: 0.125rem;
+	width: 2.5rem;
+	height: 1.375rem;
+	border: 1px solid var(--ink-20);
+	background-color: var(--color-canvas-2);
+	position: relative;
+	cursor: pointer;
+	transition:
+		background-color var(--duration-swift) var(--ease-linear-out),
+		border-color var(--duration-swift) var(--ease-linear-out);
+}
+
+.switch-box::before {
+	content: '';
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	width: 1.125rem;
+	height: 1.125rem;
+	background-color: var(--color-surface);
+	box-shadow: 0 1px 2px rgb(11 12 11 / 0.25);
+	transition: transform var(--duration-swift) var(--ease-linear-out);
+}
+
+.switch-box:checked {
+	background-color: var(--color-signal);
+	border-color: var(--color-signal);
+}
+
+.switch-box:checked::before {
+	transform: translateX(1.125rem);
+}
+
+.switch-box:focus-visible {
+	outline: 2px solid var(--color-signal);
+	outline-offset: 2px;
+}
+
+.switch-box:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+/* ─────────────────────────────────────────────────── password field ───── */
+
+.field__control-wrap:has(.field__password-toggle) .field__control--input {
+	padding-right: 2.75rem;
+}
+
+.field__password-toggle {
+	position: absolute;
+	right: 0.75rem;
+	top: 50%;
+	transform: translateY(-50%);
+	display: grid;
+	place-items: center;
+	width: 1.75rem;
+	height: 1.75rem;
+	color: var(--color-ink-3);
+	transition: color var(--duration-swift) var(--ease-linear-out);
+}
+
+.field__password-toggle:hover {
+	color: var(--color-ink);
+}
+
+.field__password-toggle svg {
+	width: 1.125rem;
+	height: 1.125rem;
+}
+
+/* ───────────────────────────────────────────────── multi-select list ───── */
+
+/* A checkbox list in a bordered, scrollable box — the same accessible
+   semantics as a native <select multiple>, styleable and keyboard-navigable
+   without fighting <option> rendering across browsers. */
+.field__listbox {
+	border: 1px solid var(--ink-15);
+	background-color: var(--color-surface);
+	max-height: 11rem;
+	overflow-y: auto;
+	padding-inline: 1rem;
+}
+
+.field__listbox .checkbox-row {
+	padding-block: 0.625rem;
+}
+
+.field__listbox .checkbox-row + .checkbox-row {
+	border-top: 1px solid var(--color-line);
+}
+
+/* ──────────────────────────────────────────────────────── range slider ───── */
+
+.range-slider {
+	appearance: none;
+	width: 100%;
+	height: 1.25rem;
+	background: transparent;
+	cursor: pointer;
+}
+
+.range-slider::-webkit-slider-runnable-track {
+	height: 2px;
+	background: var(--ink-20);
+}
+
+.range-slider::-moz-range-track {
+	height: 2px;
+	background: var(--ink-20);
+}
+
+.range-slider::-webkit-slider-thumb {
+	appearance: none;
+	margin-top: -0.6875rem;
+	width: 1.25rem;
+	height: 1.25rem;
+	background-color: var(--color-signal);
+	border: 2px solid var(--color-surface);
+	box-shadow: 0 0 0 1px var(--color-signal);
+	cursor: pointer;
+	transition: background-color var(--duration-swift) var(--ease-linear-out);
+}
+
+.range-slider::-moz-range-thumb {
+	width: 1.25rem;
+	height: 1.25rem;
+	border: 2px solid var(--color-surface);
+	background-color: var(--color-signal);
+	box-shadow: 0 0 0 1px var(--color-signal);
+	border-radius: 0;
+	cursor: pointer;
+}
+
+.range-slider:hover::-webkit-slider-thumb,
+.range-slider:hover::-moz-range-thumb {
+	background-color: var(--color-signal-bright);
+}
+
+.range-slider:focus-visible {
+	outline: 2px solid var(--color-signal);
+	outline-offset: 4px;
+}
+
+.range-slider:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.range-slider__output {
+	margin-top: 0.5rem;
+	font-size: 0.8125rem;
+	color: var(--color-ink-3);
+}
+
+/* ───────────────────────────────────────────────────────── file field ───── */
+
+.field__control--file {
+	display: block;
+	width: 100%;
+	border: 1px dashed var(--ink-20);
+	background-color: var(--color-surface);
+	padding: 1rem;
+	font-size: 0.8125rem;
+	color: var(--color-ink-3);
+	cursor: pointer;
+	transition: border-color var(--duration-swift) var(--ease-linear-out);
+}
+
+.field__control--file:hover {
+	border-color: rgb(10 15 12 / 0.4);
+}
+
+.field__control--file:focus-visible {
+	outline: 2px solid var(--color-signal);
+	outline-offset: 2px;
+}
+
+.field__control--file::file-selector-button {
+	margin-right: 1rem;
+	border: 1px solid var(--color-signal);
+	background-color: var(--color-signal);
+	color: #fff;
+	padding: 0.5rem 1rem;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color var(--duration-swift) var(--ease-linear-out);
+}
+
+.field__control--file::file-selector-button:hover {
+	background-color: var(--color-signal-bright);
+}
+
+.field__file-name {
+	margin-top: 0.5rem;
+	font-size: 0.8125rem;
+	color: var(--color-ink-2);
+}
+
+/* The confirmation panel a form is replaced by once it succeeds. */
+.form-confirmation {
+	border: 1px solid var(--color-signal);
+	background-color: var(--color-surface);
+	padding: 2rem;
+}
+
+.form-confirmation__title {
+	margin-top: 1rem;
+	color: var(--color-ink);
+}
+
+.form-confirmation__body {
+	margin-top: 1rem;
+	max-width: 32rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}

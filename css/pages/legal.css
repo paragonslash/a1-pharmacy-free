@@ -1,0 +1,65 @@
+/*
+ * Legal pages (privacy, terms, accessibility) and the 404.
+ *
+ * Body copy is set by the shared `.prose` rules in typography.css; this file
+ * only handles the header block and the page's own rhythm.
+ */
+
+.legal {
+	padding-block: 3rem;
+}
+
+@media (width >= 64rem) {
+	.legal {
+		padding-block: 5rem;
+	}
+}
+
+.legal__header {
+	margin-top: 2rem;
+	border-bottom: 1px solid var(--color-ink);
+	padding-bottom: 2rem;
+}
+
+.legal__title {
+	color: var(--color-ink);
+}
+
+.legal__standfirst {
+	margin-top: 1.25rem;
+	color: var(--color-ink-2);
+}
+
+.legal__updated {
+	margin-top: 1.5rem;
+}
+
+.legal__body {
+	margin-top: 3rem;
+}
+
+/* ────────────────────────────────────────────────────────── error ───── */
+
+.error-page {
+	display: flex;
+	min-height: 70svh;
+	flex-direction: column;
+	justify-content: center;
+	padding-block: 5rem;
+}
+
+.error-page__title {
+	margin-top: 1.5rem;
+	max-width: 48rem;
+	color: var(--color-ink);
+}
+
+.error-page__body {
+	margin-top: 1.75rem;
+	max-width: 32rem;
+	color: var(--color-ink-2);
+}
+
+.error-page__actions {
+	margin-top: 2.5rem;
+}

@@ -1,0 +1,103 @@
+/*
+ * Checkout — progress rail, the stepped form, and the confirmation panel.
+ * The order summary panel is styled in cart.css, which this page also links.
+ */
+
+.checkout-progress {
+	margin-top: 2rem;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 0.5rem;
+}
+
+.checkout-progress__bar {
+	height: 3px;
+	background-color: var(--color-canvas-2);
+	transition: background-color var(--duration-calm) var(--ease-linear-out);
+}
+
+.checkout-progress__bar--done {
+	background-color: var(--color-signal);
+}
+
+.checkout-progress .label {
+	margin-top: 0.5rem;
+}
+
+.checkout-layout {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 3rem;
+	padding-top: 2.5rem;
+}
+
+.checkout-form,
+.order-summary {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.checkout-form {
+		grid-column: span 7;
+	}
+
+	.order-summary {
+		grid-column: 9 / span 4;
+	}
+}
+
+.checkout-form__legend {
+	margin-bottom: 1rem;
+}
+
+/* Fieldsets carry no margin of their own, so consecutive groups would other-
+   wise sit flush and the legend would land on top of the previous field's
+   hint. Matches the step above the form's actions. */
+.checkout-form fieldset + fieldset {
+	margin-top: 2.5rem;
+}
+
+.checkout-choices {
+	display: grid;
+	gap: 0.75rem;
+}
+
+@media (width >= 40rem) {
+	.checkout-choices {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.checkout-form__addresses {
+	margin-top: 1.25rem;
+}
+
+.checkout-form__demo-notice {
+	margin-bottom: 1.5rem;
+}
+
+.checkout-form__actions {
+	margin-top: 2.5rem;
+}
+
+.checkout-confirmation,
+.checkout-empty {
+	max-width: 36rem;
+	padding-block: 4rem;
+}
+
+.checkout-confirmation__title {
+	margin-top: 1.25rem;
+	color: var(--color-ink);
+}
+
+.checkout-confirmation__body {
+	margin-top: 1.5rem;
+	color: var(--color-ink-2);
+}
+
+.checkout-confirmation__actions,
+.checkout-empty__action {
+	margin-top: 2rem;
+}

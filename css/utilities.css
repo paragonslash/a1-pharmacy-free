@@ -1,0 +1,165 @@
+/*
+ * Utilities — the small set of single-purpose classes the template leans on.
+ *
+ * Kept deliberately short. If a rule describes what something *is* rather than
+ * one property it sets, it belongs in components/ instead.
+ */
+
+/* ────────────────────────────────────────────────────────── shell ───── */
+
+/* Page gutter. Every full-width section wraps its contents in one of these. */
+.shell {
+	width: 100%;
+	margin-inline: auto;
+	max-width: var(--shell-max);
+	padding-inline: var(--shell-gutter);
+}
+
+/*
+ * Reading measure — legal pages and article bodies.
+ *
+ * Deliberately keeps the narrower gutter: --shell-gutter widens to 3rem on
+ * large screens, which would eat into a column that is only 48rem wide to
+ * begin with.
+ */
+.shell--tight {
+	max-width: var(--shell-max-tight);
+	padding-inline: 1.25rem;
+}
+
+@media (width >= 40rem) {
+	.shell--tight {
+		padding-inline: 2rem;
+	}
+}
+
+.shell--wide {
+	max-width: var(--shell-max-wide);
+}
+
+/* ────────────────────────────────────────────────────────── rules ───── */
+
+/* Hairlines — the primary structural device in the design. */
+.rule-t {
+	border-top: 1px solid var(--color-line);
+}
+
+.rule-b {
+	border-bottom: 1px solid var(--color-line);
+}
+
+/* Emphatic rule: full-strength ink, used to open a major section. */
+.rule-t--strong {
+	border-top-color: var(--color-ink);
+}
+
+.rule-b--strong {
+	border-bottom-color: var(--color-ink);
+}
+
+/* On dark surfaces the hairline becomes translucent paper. */
+[data-surface='dark'] .rule-t,
+.rule-t--light {
+	border-top-color: var(--paper-10);
+}
+
+[data-surface='dark'] .rule-b,
+.rule-b--light {
+	border-bottom-color: var(--paper-10);
+}
+
+/* ──────────────────────────────────────────────────────── section ───── */
+
+/*
+ * Vertical rhythm between major page sections. Three steps, largest first:
+ *
+ *   .section          the home page's generous spacing
+ *   .section--page    interior pages (About, Services, Prescriptions)
+ *   .section--snug    dense, listing-style pages (Shop, Journal, Bag, Account)
+ */
+.section {
+	padding-block: 6rem;
+}
+
+.section--page {
+	padding-block: 5rem;
+}
+
+.section--snug {
+	padding-block: 3rem;
+}
+
+@media (width >= 64rem) {
+	.section {
+		padding-block: 8rem;
+	}
+
+	.section--page {
+		padding-block: 7rem;
+	}
+
+	.section--snug {
+		padding-block: 4rem;
+	}
+}
+
+/* Trims the padding on one edge where two sections butt together. */
+.section--flush-top {
+	padding-top: 0;
+}
+
+.section--flush-bottom {
+	padding-bottom: 0;
+}
+
+/* ───────────────────────────────────────────────────── structure ───── */
+
+/* Places children in one cell so they can be layered. */
+.stack {
+	display: grid;
+	grid-template-areas: 'stack';
+}
+
+.stack > * {
+	grid-area: stack;
+}
+
+/* The twelve-column grid the editorial pages are set on. */
+.grid-12 {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 2rem;
+}
+
+/* ───────────────────────────────────────────────── accessibility ───── */
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+/* Hidden until focused — the skip link. */
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+/* Applied by JavaScript to elements whose visibility it controls. */
+[hidden] {
+	display: none !important;
+}

@@ -1,0 +1,373 @@
+/*
+ * Account — the header, tab strip, and the three panels behind it.
+ */
+
+.account-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 1.5rem;
+	border-bottom: 1px solid var(--color-ink);
+	padding-bottom: 1.5rem;
+}
+
+.account-header__name {
+	margin-top: 1rem;
+	color: var(--color-ink);
+}
+
+.account-header__meta {
+	margin-top: 0.5rem;
+}
+
+.account-header__nomination {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--color-signal);
+}
+
+.account-header__dot {
+	width: 0.375rem;
+	height: 0.375rem;
+	background-color: var(--color-accent);
+}
+
+/* ──────────────────────────────────────────────────────────── tabs ───── */
+
+.account-tabs {
+	margin-top: 2rem;
+	display: flex;
+	gap: 0.25rem;
+	border-bottom: 1px solid var(--color-line);
+}
+
+.account-tab {
+	position: relative;
+	padding: 0.75rem 1rem;
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--color-ink-3);
+	transition: color var(--duration-swift) var(--ease-linear-out);
+}
+
+.account-tab:hover {
+	color: var(--color-ink);
+}
+
+.account-tab[aria-selected='true'] {
+	color: var(--color-ink);
+}
+
+.account-tab[aria-selected='true']::after {
+	content: '';
+	position: absolute;
+	inset-inline: 0;
+	bottom: -1px;
+	height: 2px;
+	background-color: var(--color-signal);
+}
+
+.account-panel {
+	padding-top: 2.5rem;
+}
+
+.account-panel:focus {
+	outline: none;
+}
+
+.account-panel__bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.account-list {
+	margin-top: 1.5rem;
+}
+
+/* ─────────────────────────────────────────────────── prescriptions ───── */
+
+.account-row {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 1.5rem;
+	row-gap: 0.75rem;
+	border-bottom: 1px solid var(--color-line);
+	padding-block: 1.5rem;
+}
+
+.account-row__main,
+.account-row__status,
+.account-row__due {
+	grid-column: span 12;
+}
+
+@media (width >= 40rem) {
+	.account-row__status,
+	.account-row__due {
+		grid-column: span 6;
+	}
+}
+
+@media (width >= 64rem) {
+	.account-row__main {
+		grid-column: span 6;
+	}
+
+	.account-row__status {
+		grid-column: span 3;
+	}
+
+	.account-row__due {
+		grid-column: span 3;
+		text-align: right;
+	}
+}
+
+.account-row__title {
+	font-size: 0.9375rem;
+	font-weight: 600;
+	color: var(--color-ink);
+}
+
+.account-row__detail,
+.account-row__note {
+	margin-top: 0.25rem;
+}
+
+.account-row__prescriber {
+	margin-top: 0.25rem;
+	color: var(--color-ink-4);
+}
+
+.account-row__note {
+	margin-top: 0.5rem;
+}
+
+.account-row__due-date {
+	margin-top: 0.25rem;
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+	color: var(--color-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+/* ──────────────────────────────────────────────────────────── orders ───── */
+
+.account-order {
+	border-bottom: 1px solid var(--color-line);
+	padding-block: 1.5rem;
+}
+
+.account-order__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.account-order__reference {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 1rem;
+}
+
+.account-order__number {
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+	color: var(--color-ink);
+}
+
+.account-order__total {
+	font-family: var(--font-mono);
+	font-size: 0.875rem;
+	color: var(--color-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.account-order__items {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.375rem;
+}
+
+.account-order__item {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+	font-size: 0.8125rem;
+	color: var(--color-ink-2);
+}
+
+.account-order__quantity,
+.account-order__price {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}
+
+.account-order__placed {
+	margin-top: 0.75rem;
+}
+
+/* ─────────────────────────────────────────────────────────── details ───── */
+
+.account-details {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 3rem;
+}
+
+.account-details__list,
+.account-details__addresses {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.account-details__list {
+		grid-column: span 6;
+	}
+
+	.account-details__addresses {
+		grid-column: 8 / span 5;
+	}
+}
+
+.address-list {
+	margin-top: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.address-card {
+	border: 1px solid var(--color-line);
+	background-color: var(--color-surface);
+	padding: 1.25rem;
+}
+
+.address-card__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.address-card__label {
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--color-ink-2);
+}
+
+.address-card__lines {
+	margin-top: 0.75rem;
+	font-size: 0.875rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.account-footnote {
+	margin-top: 3.5rem;
+	max-width: 42rem;
+	border-top: 1px solid var(--color-line);
+	padding-top: 1.5rem;
+}
+
+/* ───────────────────────────────────────────── narrow screens ───── */
+
+/*
+ * Both lists stack into a single column below 40rem, and at that width the
+ * default rhythm stops doing enough work: every line lands in the same mono
+ * grey at nearly the same size, and a repeat item reads as one paragraph
+ * rather than three pieces of information. These rules put the grouping back.
+ */
+@media (width < 40rem) {
+	/*
+	 * Each item onto its own surface. On the canvas, separated only by a hairline,
+	 * a tall stacked item has nothing marking where it ends and the next begins.
+	 * A white card and a gap does that with no extra ink.
+	 */
+	.account-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.account-row,
+	.account-order {
+		background: var(--color-surface);
+		border: 1px solid var(--color-line);
+		padding: 1.25rem;
+	}
+
+	/* Space between the three blocks, so they read as three and not as prose. */
+	.account-row {
+		row-gap: 1.25rem;
+	}
+
+	.account-row__title {
+		font-size: 1rem;
+	}
+
+	/*
+	 * "Next due" is a date and a countdown, but stacked flush left it looks like
+	 * two more sentences. A rule above it and the values against the right edge
+	 * make it read as the data it is.
+	 */
+	.account-row__due {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		column-gap: 1rem;
+		align-items: baseline;
+		border-top: 1px solid var(--color-line);
+		padding-top: 0.75rem;
+	}
+
+	.account-row__due dt {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.account-row__due dd {
+		grid-column: 2;
+		margin-inline-start: 0;
+		text-align: right;
+	}
+
+	.account-row__due-date {
+		margin-top: 0;
+	}
+
+	/*
+	 * The order header is a flex row that wraps, which at this width leaves the
+	 * total stranded on a line of its own, reading like another line item. Two
+	 * columns instead: the reference wraps in the first, the total stays pinned
+	 * top-right where a total belongs.
+	 */
+	.account-order__head {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		column-gap: 1rem;
+		align-items: baseline;
+	}
+
+	.account-order__reference {
+		gap: 0.5rem 0.75rem;
+	}
+}

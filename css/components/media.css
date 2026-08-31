@@ -1,0 +1,85 @@
+/*
+ * Imagery.
+ *
+ * Every photograph in the template sits inside a `.plate` — a box with a fixed
+ * aspect ratio, so space is reserved before the file decodes and nothing on the
+ * page shifts as it arrives. Set the ratio inline where it differs from the
+ * default:  <div class="plate" style="--plate-ratio: 4 / 5">
+ */
+
+.plate {
+	position: relative;
+	overflow: hidden;
+	background-color: var(--color-canvas-2);
+	aspect-ratio: var(--plate-ratio, 4 / 5);
+}
+
+.plate > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Packshots are photographed on white; the plate should match. */
+.plate--lit {
+	background-color: #fff;
+}
+
+/* Fills its parent instead of imposing a ratio — for hero backdrops. */
+.plate--fill {
+	aspect-ratio: auto;
+	height: 100%;
+	width: 100%;
+}
+
+/* ─────────────────────────────────────────────────── media banner ───── */
+
+/*
+ * The full-bleed photographic masthead used by About, Services and
+ * Prescriptions. The header draws over the top of it, so the copy is anchored
+ * to the bottom edge.
+ */
+.media-banner {
+	position: relative;
+	height: 52svh;
+	min-height: 20rem;
+	width: 100%;
+	overflow: hidden;
+}
+
+.media-banner--tall {
+	height: 58svh;
+}
+
+/* Legibility wash. Deep enough to carry white display type at any size. */
+.media-banner__wash {
+	position: absolute;
+	inset: 0;
+	background-color: rgb(4 27 18 / 0.72);
+}
+
+.media-banner__content {
+	position: absolute;
+	inset-inline: 0;
+	bottom: 0;
+	padding-bottom: 3rem;
+}
+
+.media-banner__title {
+	margin-top: 1.25rem;
+	max-width: 48rem;
+	color: #fff;
+}
+
+.media-banner__title--wide {
+	max-width: 56rem;
+}
+
+/* ─────────────────────────────────────────────────────── figures ───── */
+
+.figure-caption {
+	margin-top: 0.875rem;
+	font-family: var(--font-mono);
+	font-size: var(--text-data);
+	color: var(--color-ink-3);
+}

@@ -1,0 +1,103 @@
+/*
+ * Toasts — short-lived confirmations ("Added to bag").
+ *
+ * The container is present on every page and announced as a polite live region,
+ * so a toast added to it is read out without stealing focus. js/toasts.js does
+ * the adding and the removing.
+ */
+
+.toast-region {
+	pointer-events: none;
+	position: fixed;
+	inset-inline: 0;
+	bottom: 0;
+	z-index: var(--z-toast);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem;
+}
+
+@media (width >= 40rem) {
+	.toast-region {
+		align-items: flex-end;
+		padding: 1.5rem;
+	}
+}
+
+.toast {
+	pointer-events: auto;
+	display: flex;
+	width: 100%;
+	max-width: 24rem;
+	align-items: flex-start;
+	gap: 0.75rem;
+	background-color: var(--color-ink);
+	color: #fff;
+	padding: 0.875rem 1rem;
+	box-shadow: var(--shadow-raised);
+	animation: rise-in 420ms var(--ease-linear-out) both;
+}
+
+/* Set by js/toasts.js just before the element is removed. */
+.toast--leaving {
+	animation: fade-in 200ms var(--ease-linear-out) reverse both;
+}
+
+.toast__icon {
+	margin-top: 0.125rem;
+	display: grid;
+	place-items: center;
+	width: 1.25rem;
+	height: 1.25rem;
+	flex: none;
+	border-radius: 50%;
+	background-color: rgb(255 255 255 / 0.2);
+	color: #fff;
+}
+
+.toast--success .toast__icon {
+	background-color: var(--color-accent);
+	color: var(--color-signal-dark);
+}
+
+.toast__icon svg {
+	width: 0.75rem;
+	height: 0.75rem;
+}
+
+.toast__text {
+	min-width: 0;
+	flex: 1;
+}
+
+.toast__message {
+	font-size: 0.875rem;
+	font-weight: 500;
+}
+
+.toast__detail {
+	font-size: 0.8125rem;
+	color: var(--paper-75);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.toast__dismiss {
+	margin: -0.25rem;
+	padding: 0.25rem;
+	flex: none;
+	color: var(--paper-75);
+	transition: color var(--duration-swift) var(--ease-linear-out);
+}
+
+.toast__dismiss:hover {
+	color: #fff;
+}
+
+.toast__dismiss svg {
+	width: 1rem;
+	height: 1rem;
+}

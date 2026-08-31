@@ -1,0 +1,155 @@
+/*
+ * Journal — the lead article on the index, and the article page itself.
+ *
+ * The three-across card grid it shares with the home page lives in home.css,
+ * which every page using this file also links.
+ */
+
+.journal-lead {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 1.5rem;
+	margin-top: 3rem;
+}
+
+.journal-lead__plate,
+.journal-lead__detail {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.journal-lead__plate {
+		grid-column: span 7;
+	}
+
+	.journal-lead__detail {
+		grid-column: 9 / span 4;
+		align-self: center;
+	}
+}
+
+.journal-lead__plate {
+	overflow: hidden;
+	background-color: var(--color-surface);
+}
+
+.journal-lead__image {
+	transition: transform 900ms var(--ease-precise);
+}
+
+.journal-lead:hover .journal-lead__image {
+	transform: scale(1.02);
+}
+
+.journal-lead__title {
+	margin-top: 1rem;
+	color: var(--color-ink);
+	transition: color var(--duration-calm) var(--ease-linear-out);
+}
+
+.journal-lead:hover .journal-lead__title {
+	color: var(--color-signal);
+}
+
+.journal-lead__standfirst {
+	margin-top: 1rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.journal-lead__byline {
+	margin-top: 1.25rem;
+}
+
+.journal-grid--ruled {
+	margin-top: 4rem;
+	row-gap: 3.5rem;
+}
+
+.journal-grid--ruled > li {
+	border-top: 1px solid var(--color-line);
+	padding-top: 2rem;
+}
+
+/* ─────────────────────────────────────────────────────── article ───── */
+
+.article {
+	padding-block: 3rem;
+}
+
+@media (width >= 64rem) {
+	.article {
+		padding-block: 4rem;
+	}
+}
+
+.article__kicker {
+	margin-top: 2rem;
+}
+
+.article__title {
+	margin-top: 1.25rem;
+	max-width: 56rem;
+	color: var(--color-ink);
+}
+
+.article__standfirst {
+	margin-top: 1.75rem;
+	max-width: 42rem;
+	color: var(--color-ink-2);
+}
+
+.article__byline {
+	margin-top: 2.25rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	column-gap: 1.5rem;
+	row-gap: 0.75rem;
+	border-top: 1px solid var(--color-line);
+	padding-top: 1.5rem;
+}
+
+.article__author {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.article__avatar {
+	width: 2.5rem;
+	flex: none;
+}
+
+.article__author-name {
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--color-ink);
+}
+
+.article__date {
+	margin-left: auto;
+}
+
+.article__hero {
+	margin-top: 3rem;
+}
+
+.article__hero .plate {
+	background-color: var(--color-surface);
+}
+
+.article__body {
+	margin-top: 3.5rem;
+}
+
+.article__reminder {
+	margin-top: 4rem;
+	padding: 1.5rem;
+}
+
+.article__reminder-action {
+	margin-top: 1.5rem;
+}

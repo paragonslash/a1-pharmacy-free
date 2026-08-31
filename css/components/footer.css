@@ -1,0 +1,286 @@
+/*
+ * Site footer — newsletter, link columns, opening hours, regulatory small print.
+ *
+ * A single dark green field. `data-surface="dark"` on the element flips the
+ * shared focus ring and hairline utilities to their light variants.
+ */
+
+.site-footer {
+	position: relative;
+	overflow: hidden;
+	background-color: var(--color-signal);
+	color: var(--paper-75);
+}
+
+/* ───────────────────────────────────────────────────── newsletter ───── */
+
+.newsletter {
+	display: grid;
+	gap: 2.5rem;
+	border-bottom: 1px solid var(--paper-10);
+	padding-block: 4rem;
+}
+
+@media (width >= 64rem) {
+	.newsletter {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 5rem;
+		padding-block: 5rem;
+	}
+
+	/* Drops the form to sit level with the body copy rather than the headline. */
+	.newsletter__form-column {
+		padding-top: 3.5rem;
+	}
+}
+
+.newsletter__title {
+	margin-top: 1.25rem;
+	color: #fff;
+}
+
+.newsletter__body {
+	margin-top: 1.25rem;
+	max-width: 28rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--paper-60);
+}
+
+.newsletter__form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+@media (width >= 40rem) {
+	.newsletter__form {
+		flex-direction: row;
+	}
+}
+
+.newsletter__input-wrap {
+	flex: 1;
+}
+
+.newsletter__input {
+	height: 3.5rem;
+	width: 100%;
+	border: 1px solid var(--paper-20);
+	background-color: rgb(255 255 255 / 0.06);
+	padding-inline: 1.5rem;
+	font-size: 0.9375rem;
+	color: #fff;
+	transition: border-color var(--duration-calm) var(--ease-linear-out);
+}
+
+.newsletter__input::placeholder {
+	color: var(--paper-60);
+}
+
+.newsletter__input:hover {
+	border-color: rgb(255 255 255 / 0.35);
+}
+
+.newsletter__input:focus {
+	outline: none;
+	border-color: var(--color-line);
+	box-shadow: 0 0 0 2px var(--paper-25);
+}
+
+.newsletter__note {
+	margin-top: 0.875rem;
+	font-size: 0.75rem;
+	color: var(--paper-70);
+}
+
+.newsletter__confirmation {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	background-color: rgb(255 255 255 / 0.08);
+	padding: 1.25rem 1.5rem;
+	font-size: 0.9375rem;
+	color: #fff;
+}
+
+.newsletter__confirmation svg {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex: none;
+	color: var(--paper-60);
+}
+
+/* ─────────────────────────────────────────────────── link columns ───── */
+
+.footer-columns {
+	display: grid;
+	gap: 3rem;
+	padding-block: 4rem;
+}
+
+@media (width >= 48rem) {
+	.footer-columns {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (width >= 64rem) {
+	.footer-columns {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		gap: 2rem;
+	}
+
+	.footer-columns__identity {
+		grid-column: span 2;
+	}
+}
+
+.footer-columns__description {
+	margin-top: 1.5rem;
+	max-width: 20rem;
+	font-size: 0.875rem;
+	line-height: 1.7;
+	color: var(--paper-60);
+}
+
+.footer-columns__address {
+	margin-top: 1.75rem;
+	font-size: 0.875rem;
+	line-height: 1.6;
+	color: var(--paper-60);
+}
+
+.footer-columns__contact {
+	margin-top: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.375rem;
+	font-size: 0.875rem;
+	color: #fff;
+}
+
+.footer-column__heading {
+	font-size: 0.6875rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	color: var(--color-ink-4);
+}
+
+.footer-column__list {
+	margin-top: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.footer-column__link {
+	font-size: 0.875rem;
+	color: var(--paper-75);
+	transition: color var(--duration-calm) var(--ease-linear-out);
+}
+
+.footer-column__link:hover {
+	color: var(--color-accent);
+}
+
+/* ─────────────────────────────────────────────────── opening hours ───── */
+
+.footer-hours {
+	display: grid;
+	gap: 2rem;
+	border-top: 1px solid var(--paper-10);
+	padding-block: 2.5rem;
+}
+
+@media (width >= 40rem) {
+	.footer-hours {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (width >= 64rem) {
+	.footer-hours {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+.footer-hours__slot {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+@media (width >= 40rem) {
+	.footer-hours__slot {
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+}
+
+.footer-hours__days {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--color-ink-4);
+}
+
+.footer-hours__time {
+	font-size: 0.9375rem;
+	color: #fff;
+	font-variant-numeric: tabular-nums;
+}
+
+/* ─────────────────────────────────────────────────────── regulatory ───── */
+
+.footer-legal {
+	border-top: 1px solid var(--paper-10);
+	padding-block: 2rem;
+}
+
+.footer-legal__statement {
+	max-width: 56rem;
+	font-size: 0.75rem;
+	line-height: 1.7;
+	color: var(--paper-80);
+}
+
+.footer-legal__meta {
+	margin-top: 1.75rem;
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1.25rem;
+}
+
+@media (width >= 40rem) {
+	.footer-legal__meta {
+		flex-direction: row;
+		align-items: center;
+	}
+}
+
+.footer-legal__copyright {
+	font-size: 0.75rem;
+	color: var(--color-ink-4);
+}
+
+.footer-legal__links {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+.footer-legal__link {
+	font-size: 0.75rem;
+	color: var(--paper-60);
+	transition: color var(--duration-swift) var(--ease-linear-out);
+}
+
+.footer-legal__link:hover {
+	color: #fff;
+}

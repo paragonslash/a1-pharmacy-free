@@ -1,0 +1,65 @@
+/*
+ * Prescriptions — the order form block. The step list and FAQ reuse the
+ * .split-block and .index-list patterns, so this page also links home.css.
+ */
+
+.prescription-order {
+	background-color: var(--color-surface);
+	padding-block: 5rem;
+	/* Clears the fixed header when arriving at #order from another page. */
+	scroll-margin-top: 5rem;
+}
+
+@media (width >= 64rem) {
+	.prescription-order {
+		padding-block: 7rem;
+	}
+}
+
+.prescription-order__grid {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 3rem;
+}
+
+.prescription-order__aside,
+.prescription-order__main {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.prescription-order__aside {
+		grid-column: span 4;
+	}
+
+	.prescription-order__main {
+		grid-column: 6 / span 7;
+	}
+}
+
+.prescription-order__title {
+	margin-top: 1rem;
+	color: var(--color-ink);
+}
+
+.prescription-order__body {
+	margin-top: 1.5rem;
+	max-width: 28rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.prescription-order__urgent {
+	margin-top: 2rem;
+}
+
+.prescription-order__privacy {
+	margin-top: 1rem;
+	max-width: 32rem;
+}
+
+.prescription-order__confirmation-action {
+	margin-top: 1.75rem;
+}

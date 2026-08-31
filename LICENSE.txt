@@ -1,0 +1,59 @@
+A1 PHARMACY — FREE EDITION
+==========================
+
+Copyright (c) 2026 VerdantThemeShop. All rights reserved.
+
+This is a five-page cut of a twenty-two page template. The full edition is at
+https://paragonslash.gumroad.com/l/a1pharmacy
+
+
+WHAT YOU MAY DO
+---------------
+
+  * Use it to build websites, for yourself or for clients, as many as you like.
+  * Modify it however you want.
+  * Charge a client for building and delivering the site.
+
+
+WHAT YOU MAY NOT DO
+-------------------
+
+  * Remove or hide the "Get the full template" links in the header and footer.
+    They are the price of the free edition. Removing them ends your licence.
+    The full edition has no such links, and no such condition.
+  * Sell, sub-licence or give away the template itself, modified or not.
+  * Redistribute these files as a template, theme, builder or starter kit.
+
+
+NO WARRANTY
+-----------
+
+THE TEMPLATE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY ARISING FROM OR IN CONNECTION WITH THE TEMPLATE OR ITS USE.
+
+
+FONTS
+-----
+
+Archivo and IBM Plex Mono, both under the SIL Open Font License 1.1, with their
+licence text in fonts/. The OFL permits redistribution as part of this
+template. Neither font may be sold on its own.
+
+
+IMAGES
+------
+
+Generated placeholders, not photography. Replace them with your own or with
+correctly licensed images before publishing. See credits.txt.
+
+
+BEFORE YOU PUBLISH
+------------------
+
+Every piece of content is fictional. Registration, premises, company and tax
+numbers are zeroed placeholders — publishing them unchanged would be a false
+claim of registration with a real regulator. Product copy and dosing text are
+sample copy and are not medical advice. Pharmacy and healthcare sites are
+regulated almost everywhere; meeting the rules that apply to you is your
+responsibility.

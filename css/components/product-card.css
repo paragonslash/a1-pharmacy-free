@@ -1,0 +1,232 @@
+/*
+ * Product tile.
+ *
+ * Framed like a dispensing label: a ruled header carrying the catalogue number
+ * and legal classification, the packshot on a lit plate, then the clinical
+ * detail. The tile lifts on hover and an accent rule draws across the top, so
+ * the card reads as an object rather than a bare image.
+ */
+
+.product-card {
+	position: relative;
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	border: 1px solid var(--color-line);
+	background-color: var(--color-surface);
+	transition:
+		border-color 420ms var(--ease-precise),
+		box-shadow 420ms var(--ease-precise),
+		transform 420ms var(--ease-precise);
+}
+
+.product-card:hover {
+	transform: translateY(-0.25rem);
+	border-color: var(--ink-25);
+	box-shadow: var(--shadow-card);
+}
+
+/* Accent rule, drawn on hover. */
+.product-card::before {
+	content: '';
+	position: absolute;
+	inset-inline: 0;
+	top: -1px;
+	z-index: 10;
+	height: 3px;
+	background-color: var(--color-accent);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 420ms var(--ease-precise);
+}
+
+.product-card:hover::before {
+	transform: scaleX(1);
+}
+
+.product-card__link {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+/* ─────────────────────────────────────────────────── label header ───── */
+
+.product-card__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	border-bottom: 1px solid var(--color-line);
+	padding: 0.625rem 1rem;
+}
+
+.product-card__classification {
+	font-family: var(--font-mono);
+	font-size: 0.5625rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--color-ink-3);
+}
+
+/* ─────────────────────────────────────────────────────────── plate ───── */
+
+.product-card__plate {
+	position: relative;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.product-card__image {
+	transition: transform 900ms var(--ease-precise);
+}
+
+.product-card:hover .product-card__image {
+	transform: scale(1.04);
+}
+
+/* Flags, stacked at the top-left of the plate. */
+.product-card__flags {
+	pointer-events: none;
+	position: absolute;
+	left: 0.75rem;
+	top: 0.75rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.375rem;
+}
+
+.product-card__advice {
+	pointer-events: none;
+	position: absolute;
+	right: 0.75rem;
+	top: 0.75rem;
+	background-color: var(--color-signal);
+	color: var(--color-accent);
+	padding: 0.25rem 0.5rem;
+	font-family: var(--font-mono);
+	font-size: 0.5625rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+}
+
+/* ────────────────────────────────────────────────────────── detail ───── */
+
+.product-card__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	padding: 1rem;
+}
+
+.product-card__name {
+	font-size: 0.9375rem;
+	font-weight: 600;
+	line-height: 1.35;
+	letter-spacing: -0.012em;
+	color: var(--color-ink);
+}
+
+.product-card__ingredient {
+	margin-top: 0.375rem;
+	color: var(--color-signal);
+}
+
+.product-card__specification {
+	margin-top: 0.125rem;
+	padding-bottom: 1rem;
+	color: var(--color-ink-4);
+}
+
+.product-card__price-row {
+	margin-top: auto;
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.75rem;
+	border-top: 1px solid var(--color-line);
+	padding-top: 0.75rem;
+}
+
+.product-card__price {
+	font-family: var(--font-mono);
+	font-size: 0.9375rem;
+	color: var(--color-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.product-card__compare-price {
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	color: var(--color-ink-4);
+	text-decoration: line-through;
+	font-variant-numeric: tabular-nums;
+}
+
+/* ────────────────────────────────────────────────────────── add ───── */
+
+/*
+ * Always rendered, never hover-gated — a keyboard user has to be able to reach
+ * it. Hovering the card only changes its colour.
+ */
+.product-card__add {
+	height: 2.75rem;
+	width: 100%;
+	border-top: 1px solid var(--color-line);
+	background-color: var(--color-surface);
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--color-ink-2);
+	transition:
+		background-color var(--duration-swift) var(--ease-linear-out),
+		color var(--duration-swift) var(--ease-linear-out);
+}
+
+.product-card:hover .product-card__add {
+	background-color: var(--color-signal);
+	color: #fff;
+}
+
+.product-card__add:hover {
+	background-color: var(--color-accent);
+	color: var(--color-signal-dark);
+}
+
+/* ────────────────────────────────────────────────────────── grids ───── */
+
+/* The catalogue grid. Column count steps up with the viewport. */
+.product-grid {
+	display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	column-gap: 1.5rem;
+	row-gap: 3rem;
+}
+
+@media (width >= 40rem) {
+	.product-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (width >= 48rem) {
+	.product-grid--three {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.product-grid--four {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (width >= 80rem) {
+	.product-grid--three {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.product-grid--four {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}

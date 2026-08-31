@@ -1,0 +1,73 @@
+/*
+ * Contact — details column beside the form.
+ */
+
+.contact-layout {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 3.5rem;
+	padding-top: 3rem;
+}
+
+.contact-details,
+.contact-form {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.contact-details {
+		grid-column: span 4;
+	}
+
+	.contact-form {
+		grid-column: 6 / span 7;
+	}
+}
+
+.contact-details__row {
+	border-top: 1px solid var(--color-line);
+	padding-block: 1.5rem;
+}
+
+.contact-details__row:first-child {
+	border-top: 0;
+	padding-top: 0;
+}
+
+.contact-details__value {
+	margin-top: 0.75rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.contact-hours {
+	margin-top: 0.75rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.contact-hours__row {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	font-size: 0.875rem;
+	color: var(--color-ink-2);
+}
+
+.contact-hours__time {
+	font-family: var(--font-mono);
+	color: var(--color-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.contact-emergency {
+	margin-top: 2rem;
+}
+
+/* Submission failures sit above the button, not against a single field. */
+.form-submit-error {
+	margin-bottom: 1rem;
+}

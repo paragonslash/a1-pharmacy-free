@@ -1,0 +1,293 @@
+/*
+ * Recurring section furniture: the ruled heading block, breadcrumbs, the ruled
+ * index list, the figure row, and the bordered notices.
+ *
+ * These are the pieces that appear on almost every page. Anything used once
+ * lives in its page stylesheet instead.
+ */
+
+/* ───────────────────────────────────────────────── section heading ───── */
+
+/*
+ * Label, display headline, optional lede — sitting above a hairline that closes
+ * the block off from the content beneath.
+ */
+.section-heading {
+	border-bottom: 1px solid var(--color-line);
+	padding-bottom: 1.5rem;
+}
+
+.section-heading--strong {
+	border-bottom-color: var(--color-ink);
+}
+
+.section-heading__title {
+	margin-top: 1rem;
+	color: var(--color-ink);
+}
+
+/* For page titles that should break onto a second line rather than run the
+   full width of the shell. */
+.section-heading__title--measure {
+	max-width: 48rem;
+}
+
+.section-heading__lede {
+	margin-top: 1.5rem;
+	max-width: 36rem;
+	color: var(--color-ink-2);
+}
+
+/* Variant with the lede pulled out to a second column on wide screens. */
+.section-heading--split {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	align-items: end;
+	column-gap: 2rem;
+	row-gap: 1.25rem;
+}
+
+.section-heading--split .section-heading__main {
+	grid-column: span 12;
+}
+
+.section-heading--split .section-heading__aside {
+	grid-column: span 12;
+	max-width: 28rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+@media (width >= 64rem) {
+	.section-heading--split .section-heading__main {
+		grid-column: span 7;
+	}
+
+	.section-heading--split .section-heading__aside {
+		grid-column: 9 / span 4;
+	}
+}
+
+[data-surface='dark'] .section-heading {
+	border-bottom-color: var(--paper-15);
+}
+
+[data-surface='dark'] .section-heading__title {
+	color: #fff;
+}
+
+[data-surface='dark'] .section-heading__lede {
+	color: var(--paper-75);
+}
+
+/* ──────────────────────────────────────────────────── breadcrumbs ───── */
+
+.breadcrumb__list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.breadcrumb__current {
+	color: var(--color-ink);
+}
+
+/* ─────────────────────────────────────────────────────── index list ───── */
+
+/*
+ * The numbered, ruled list used for process steps and service summaries. Each
+ * row is a twelve-column grid so the number and the copy align down the page.
+ */
+.index-list__item {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 1.5rem;
+	border-top: 1px solid var(--color-line);
+	padding-block: 1.75rem;
+}
+
+.index-list__item:last-child {
+	border-bottom: 1px solid var(--color-line);
+}
+
+.index-list__number {
+	grid-column: span 2;
+}
+
+.index-list__content {
+	grid-column: span 10;
+}
+
+@media (width >= 64rem) {
+	.index-list__number {
+		grid-column: span 1;
+	}
+
+	.index-list__content {
+		grid-column: span 11;
+	}
+}
+
+.index-list__title {
+	color: var(--color-ink);
+}
+
+.index-list__body {
+	margin-top: 0.5rem;
+	max-width: 36rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+/* ───────────────────────────────────────────────────── figure row ───── */
+
+/* The four counted statistics. Values animate up on first view. */
+.figure-row {
+	margin-top: 5rem;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 2.5rem;
+	border-top: 1px solid var(--color-ink);
+	padding-top: 2.5rem;
+}
+
+@media (width >= 64rem) {
+	.figure-row {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+.figure-row__value {
+	display: block;
+	font-family: var(--font-display);
+	font-size: var(--text-d3);
+	line-height: var(--leading-d3);
+	letter-spacing: var(--tracking-d3);
+	font-weight: 600;
+	font-stretch: 96%;
+	color: var(--color-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.figure-row__label {
+	display: block;
+	margin-top: 0.75rem;
+	max-width: 14rem;
+}
+
+/* ────────────────────────────────────────────────────────── notice ───── */
+
+/*
+ * A bordered aside. The left rule carries the meaning: accent for a pharmacist's
+ * note, red for a safety warning, green for a confirmation.
+ */
+.notice {
+	border-left: 2px solid var(--color-accent);
+	background-color: var(--color-surface);
+	padding: 1.25rem;
+}
+
+.notice--roomy {
+	padding: 1.5rem;
+}
+
+.notice--danger {
+	border-left-color: var(--color-danger);
+	background-color: var(--color-canvas);
+}
+
+.notice--signal {
+	border-left-color: var(--color-signal);
+	background-color: var(--color-canvas);
+}
+
+.notice--on-canvas {
+	background-color: var(--color-canvas);
+}
+
+.notice__body {
+	margin-top: 0.75rem;
+	font-size: 0.875rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.notice__body--lead {
+	font-size: 0.9375rem;
+}
+
+/* ───────────────────────────────────────────────── definition rows ───── */
+
+/* Label / value pairs, ruled between — registration details, account details. */
+.detail-list__row {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: 1rem;
+	padding-block: 1rem;
+	border-top: 1px solid var(--color-line);
+}
+
+.detail-list__row:first-child {
+	border-top: 0;
+}
+
+.detail-list__term {
+	grid-column: span 12;
+}
+
+.detail-list__value {
+	grid-column: span 12;
+	font-size: 0.875rem;
+	color: var(--color-ink);
+}
+
+.detail-list__value--mono {
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+}
+
+@media (width >= 40rem) {
+	.detail-list__term {
+		grid-column: span 5;
+	}
+
+	.detail-list__value {
+		grid-column: span 7;
+	}
+}
+
+/* ──────────────────────────────────────────────────── closing block ───── */
+
+/* The address-and-actions block that closes the home page. */
+.closing-block {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	align-items: end;
+	column-gap: 2rem;
+	row-gap: 2rem;
+	border-top: 1px solid var(--color-ink);
+	padding-top: 2.5rem;
+}
+
+.closing-block__title {
+	grid-column: span 12;
+	color: var(--color-ink);
+}
+
+.closing-block__aside {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.closing-block__title {
+		grid-column: span 7;
+	}
+
+	.closing-block__aside {
+		grid-column: 9 / span 4;
+	}
+}

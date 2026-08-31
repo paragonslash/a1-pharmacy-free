@@ -1,0 +1,46 @@
+/*
+ * Pager.
+ *
+ * Previous / position / next, on a rule. Shown by whatever is doing the paging
+ * — js/pager.js for plain lists, js/shop-filters.js on the shop, where paging
+ * has to survive a filter change — and hidden when there is only one page.
+ *
+ * The markup is three children and no wrapper logic, so it works the same
+ * whether a script is driving it or a server rendered it with real links.
+ */
+
+.pager {
+	margin-top: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	border-top: 1px solid var(--color-line);
+	padding-top: 1.5rem;
+}
+
+.pager__step {
+	border: 1px solid var(--ink-20);
+	padding: 0.625rem 1.25rem;
+	font-family: var(--font-mono);
+	font-size: 0.6875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--color-ink);
+	transition: border-color var(--duration-swift) var(--ease-linear-out);
+}
+
+.pager__step:hover:not(:disabled) {
+	border-color: var(--ink-70);
+}
+
+.pager__step:disabled {
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+
+.pager__position {
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	color: var(--color-ink-3);
+}

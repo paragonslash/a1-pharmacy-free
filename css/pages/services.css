@@ -1,0 +1,202 @@
+/*
+ * Services — the intro bar, the ruled service entries, and the closing panel.
+ */
+
+.services-intro {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 1.5rem;
+	border-bottom: 1px solid var(--color-ink);
+	padding-bottom: 2rem;
+}
+
+.services-intro__copy {
+	grid-column: span 12;
+	max-width: 42rem;
+	color: var(--color-ink-2);
+}
+
+.services-intro__action {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.services-intro__copy {
+		grid-column: span 7;
+	}
+
+	.services-intro__action {
+		grid-column: 9 / span 4;
+	}
+}
+
+/* ───────────────────────────────────────────────── service entries ───── */
+
+.service-entry {
+	border-bottom: 1px solid var(--color-line);
+	/* Clears the fixed header when arriving from the mega menu. */
+	scroll-margin-top: 7rem;
+}
+
+.service-entry__grid {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 1.5rem;
+	padding-block: 2.5rem;
+}
+
+@media (width >= 64rem) {
+	.service-entry__grid {
+		padding-block: 3.5rem;
+	}
+}
+
+.service-entry__headline {
+	grid-column: span 12;
+	display: flex;
+	align-items: flex-start;
+	gap: 1.25rem;
+}
+
+.service-entry__number {
+	padding-top: 0.5rem;
+}
+
+.service-entry__name {
+	color: var(--color-ink);
+}
+
+.service-entry__summary {
+	margin-top: 0.75rem;
+	max-width: 28rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.service-entry__description {
+	grid-column: span 12;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.service-entry__meta {
+	grid-column: span 12;
+}
+
+.service-entry__meta-row {
+	margin-top: 0.75rem;
+}
+
+.service-entry__value {
+	margin-top: 0.25rem;
+	font-family: var(--font-mono);
+	font-size: 0.875rem;
+	color: var(--color-ink);
+}
+
+.service-entry__includes {
+	grid-column: span 12;
+	display: grid;
+	column-gap: 2rem;
+	row-gap: 0.5rem;
+	border-top: 1px solid var(--color-line);
+	padding-top: 1.5rem;
+}
+
+@media (width >= 40rem) {
+	.service-entry__includes {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (width >= 64rem) {
+	.service-entry__headline {
+		grid-column: span 5;
+	}
+
+	.service-entry__description {
+		grid-column: span 4;
+	}
+
+	.service-entry__meta {
+		grid-column: 11 / span 2;
+	}
+
+	.service-entry__includes {
+		grid-column: 2 / span 9;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.service-include {
+	display: flex;
+	gap: 0.75rem;
+	font-size: 0.875rem;
+	color: var(--color-ink-2);
+}
+
+/* A ruled tick rather than a bullet. */
+.service-include__tick {
+	margin-top: 0.625rem;
+	height: 1px;
+	width: 0.75rem;
+	flex: none;
+	background-color: var(--color-accent);
+}
+
+/* ──────────────────────────────────────────────────── closing panel ───── */
+
+.services-cta {
+	background-color: var(--color-signal);
+	color: #fff;
+	padding-block: 5rem;
+}
+
+@media (width >= 64rem) {
+	.services-cta {
+		padding-block: 7rem;
+	}
+}
+
+.services-cta__grid {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	align-items: center;
+	column-gap: 2rem;
+	row-gap: 2rem;
+}
+
+.services-cta__copy {
+	grid-column: span 12;
+}
+
+.services-cta__actions {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.services-cta__copy {
+		grid-column: span 7;
+	}
+
+	.services-cta__actions {
+		grid-column: 9 / span 4;
+	}
+}
+
+.services-cta__title {
+	margin-top: 1.25rem;
+	color: #fff;
+}
+
+.services-cta__body {
+	margin-top: 1.25rem;
+	max-width: 32rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--paper-70);
+}

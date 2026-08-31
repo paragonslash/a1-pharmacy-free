@@ -1,0 +1,397 @@
+/*
+ * Home page — the sections below the hero.
+ *
+ * Several of these blocks (the journal grid, the split block) are also used on
+ * the journal index and the prescriptions page, which link this stylesheet for
+ * exactly that reason.
+ */
+
+.home-range__grid {
+	margin-top: 3rem;
+}
+
+.home-range__footer {
+	margin-top: 3.5rem;
+}
+
+/* ─────────────────────────────────────────────────── category grid ───── */
+
+/*
+ * Eight tiles separated by hairlines. The gap is 1px over a line-coloured
+ * background, so the rules between tiles need no borders of their own.
+ */
+.category-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1px;
+	background-color: var(--color-line);
+}
+
+@media (width >= 48rem) {
+	.category-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+.category-tile {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 2.5rem;
+	overflow: hidden;
+	background-color: var(--color-canvas);
+	padding: 1.5rem;
+}
+
+@media (width >= 64rem) {
+	.category-tile {
+		padding: 2rem;
+	}
+}
+
+/* A ghosted packshot that saturates and warms under a green wash on hover. */
+.category-tile__backdrop {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+}
+
+.category-tile__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: grayscale(1);
+	opacity: 0.14;
+	transition:
+		filter 700ms var(--ease-precise),
+		opacity 700ms var(--ease-precise),
+		transform 700ms var(--ease-precise);
+}
+
+.category-tile:hover .category-tile__image {
+	filter: grayscale(0);
+	opacity: 1;
+	transform: scale(1.06);
+}
+
+.category-tile__wash {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background-color: rgb(242 243 241 / 0.7);
+	transition: background-color var(--duration-slow) var(--ease-precise);
+}
+
+.category-tile:hover .category-tile__wash {
+	background-color: rgb(7 42 29 / 0.85);
+}
+
+.category-tile__rule {
+	position: absolute;
+	inset-inline: 0;
+	bottom: 0;
+	height: 3px;
+	background-color: var(--color-accent);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform var(--duration-slow) var(--ease-precise);
+}
+
+.category-tile:hover .category-tile__rule {
+	transform: scaleX(1);
+}
+
+.category-tile__number,
+.category-tile__name,
+.category-tile__tagline {
+	transition: color var(--duration-slow) var(--ease-linear-out);
+}
+
+.category-tile__name {
+	color: var(--color-ink);
+}
+
+.category-tile__tagline {
+	margin-top: 0.5rem;
+}
+
+.category-tile:hover .category-tile__number {
+	color: var(--color-accent);
+}
+
+.category-tile:hover .category-tile__name {
+	color: #fff;
+}
+
+.category-tile:hover .category-tile__tagline {
+	color: var(--paper-70);
+}
+
+/* ──────────────────────────────────────────────────── split block ───── */
+
+/* A narrow column of copy beside a wider column of ruled rows. */
+.split-block {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 3rem;
+}
+
+.split-block__aside,
+.split-block__main {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.split-block__aside {
+		grid-column: span 4;
+	}
+
+	.split-block__main {
+		grid-column: 6 / span 7;
+	}
+}
+
+.split-block__title {
+	margin-top: 1rem;
+	color: var(--color-ink);
+}
+
+.split-block__body {
+	margin-top: 1.5rem;
+	max-width: 28rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.split-block__actions {
+	margin-top: 2rem;
+}
+
+/* ────────────────────────────────────────────────────── quote block ───── */
+
+.quote-section {
+	background-color: var(--color-signal);
+	color: #fff;
+	padding-block: 6rem;
+}
+
+@media (width >= 64rem) {
+	.quote-section {
+		padding-block: 8rem;
+	}
+}
+
+.quote-section__grid {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	align-items: center;
+	column-gap: 2rem;
+	row-gap: 3rem;
+}
+
+.quote-section__portrait {
+	grid-column: span 12;
+}
+
+.quote-section__body {
+	grid-column: span 12;
+}
+
+@media (width >= 40rem) {
+	.quote-section__portrait {
+		grid-column: span 6;
+	}
+}
+
+@media (width >= 64rem) {
+	.quote-section__portrait {
+		grid-column: span 4;
+	}
+
+	.quote-section__body {
+		grid-column: 6 / span 7;
+	}
+}
+
+.quote-section__quote {
+	margin-top: 1.5rem;
+}
+
+.quote-section__text {
+	font-weight: 600;
+	line-height: 1.1;
+	color: #fff;
+}
+
+.quote-section__attribution {
+	margin-top: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	column-gap: 1rem;
+	row-gap: 0.25rem;
+	border-top: 1px solid var(--paper-20);
+	padding-top: 1.25rem;
+}
+
+.quote-section__name {
+	font-size: 1.0625rem;
+	font-weight: 600;
+	color: #fff;
+}
+
+.quote-section__bio {
+	margin-top: 1.75rem;
+	max-width: 36rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--paper-70);
+}
+
+.quote-section__actions {
+	margin-top: 2rem;
+}
+
+/* ───────────────────────────────────────────────────── service rows ───── */
+
+.service-row {
+	border-bottom: 1px solid var(--color-line);
+}
+
+.service-row__link {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	align-items: baseline;
+	column-gap: 1rem;
+	row-gap: 0.5rem;
+	padding-block: 1.5rem;
+}
+
+@media (width >= 64rem) {
+	.service-row__link {
+		column-gap: 2rem;
+	}
+}
+
+.service-row__number {
+	grid-column: span 2;
+}
+
+.service-row__name {
+	grid-column: span 10;
+	color: var(--color-ink);
+	transition: color var(--duration-calm) var(--ease-linear-out);
+}
+
+.service-row__link:hover .service-row__name {
+	color: var(--color-signal);
+}
+
+.service-row__summary {
+	grid-column: 3 / span 10;
+	font-size: 0.875rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.service-row__price {
+	grid-column: span 12;
+}
+
+@media (width >= 40rem) {
+	.service-row__number {
+		grid-column: span 1;
+	}
+
+	.service-row__name {
+		grid-column: span 5;
+	}
+
+	.service-row__summary {
+		grid-column: span 4;
+	}
+
+	.service-row__price {
+		grid-column: span 2;
+	}
+}
+
+@media (width >= 64rem) {
+	.service-row__name {
+		grid-column: span 4;
+	}
+
+	.service-row__summary {
+		grid-column: span 5;
+	}
+
+	.service-row__price {
+		text-align: right;
+	}
+}
+
+/* ───────────────────────────────────────────────────── journal grid ───── */
+
+.journal-grid {
+	display: grid;
+	column-gap: 2rem;
+	row-gap: 3rem;
+	margin-top: 2.5rem;
+}
+
+@media (width >= 48rem) {
+	.journal-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.journal-card {
+	display: block;
+}
+
+.journal-card__plate {
+	overflow: hidden;
+	background-color: var(--color-surface);
+}
+
+.journal-card__image {
+	transition: transform 900ms var(--ease-precise);
+}
+
+.journal-card:hover .journal-card__image {
+	transform: scale(1.03);
+}
+
+.journal-card__meta {
+	margin-top: 1.25rem;
+}
+
+.journal-card__title {
+	margin-top: 0.75rem;
+	color: var(--color-ink);
+	transition: color var(--duration-calm) var(--ease-linear-out);
+}
+
+.journal-card:hover .journal-card__title {
+	color: var(--color-signal);
+}
+
+.journal-card__excerpt {
+	margin-top: 0.75rem;
+	font-size: 0.875rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.journal-card__byline {
+	margin-top: 1rem;
+}
+
+.closing-block__actions {
+	margin-top: 1.75rem;
+}

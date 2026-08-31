@@ -1,0 +1,60 @@
+/*
+ * Tooltip — a short, supplementary label revealed on hover or keyboard
+ * focus. Pure CSS: the trigger and bubble are siblings inside .tooltip,
+ * shown via :hover / :focus-within, so it works from the keyboard with no
+ * JavaScript. The trigger carries aria-describedby pointing at the bubble's
+ * id, and the bubble carries role="tooltip" — belt and braces for
+ * assistive tech that doesn't infer the relationship from proximity alone.
+ */
+
+.tooltip {
+	position: relative;
+	display: inline-flex;
+}
+
+.tooltip__trigger {
+	display: inline-grid;
+	place-items: center;
+	width: 1.125rem;
+	height: 1.125rem;
+	border: 1px solid var(--color-ink-3);
+	color: var(--color-ink-3);
+	font-family: var(--font-mono);
+	font-size: 0.625rem;
+	cursor: help;
+	transition:
+		color var(--duration-swift) var(--ease-linear-out),
+		border-color var(--duration-swift) var(--ease-linear-out);
+}
+
+.tooltip:hover .tooltip__trigger,
+.tooltip__trigger:focus-visible {
+	color: var(--color-ink);
+	border-color: var(--color-ink);
+}
+
+.tooltip__bubble {
+	pointer-events: none;
+	position: absolute;
+	bottom: calc(100% + 0.5rem);
+	left: 50%;
+	transform: translateX(-50%) translateY(4px);
+	width: max-content;
+	max-width: 16rem;
+	background-color: var(--color-signal);
+	color: #fff;
+	padding: 0.5rem 0.75rem;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	opacity: 0;
+	transition:
+		opacity var(--duration-swift) var(--ease-linear-out),
+		transform var(--duration-swift) var(--ease-linear-out);
+	z-index: var(--z-header);
+}
+
+.tooltip:hover .tooltip__bubble,
+.tooltip:focus-within .tooltip__bubble {
+	opacity: 1;
+	transform: translateX(-50%) translateY(0);
+}

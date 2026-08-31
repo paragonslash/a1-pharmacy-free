@@ -1,0 +1,129 @@
+/*
+ * About — the intro columns, the team grid, and the registration table.
+ */
+
+.about-intro {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 2.5rem;
+}
+
+.about-intro__label,
+.about-intro__copy {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.about-intro__label {
+		grid-column: span 5;
+	}
+
+	.about-intro__copy {
+		grid-column: span 7;
+	}
+}
+
+.about-intro__copy {
+	color: var(--color-ink-2);
+}
+
+.about-intro__copy > p + p {
+	margin-top: 1.5rem;
+}
+
+/* ────────────────────────────────────────────────────────── team ───── */
+
+.team-section {
+	background-color: var(--color-surface);
+	padding-block: 5rem;
+	/* Clears the fixed header when arriving at #team from another page. */
+	scroll-margin-top: 7rem;
+}
+
+@media (width >= 64rem) {
+	.team-section {
+		padding-block: 7rem;
+	}
+}
+
+.team-grid {
+	margin-top: 3rem;
+	display: grid;
+	column-gap: 2rem;
+	row-gap: 3.5rem;
+}
+
+@media (width >= 48rem) {
+	.team-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.team-member__portrait {
+	background-color: var(--color-canvas);
+}
+
+.team-member__name {
+	margin-top: 1.5rem;
+	color: var(--color-ink);
+}
+
+.team-member__role {
+	margin-top: 0.5rem;
+}
+
+.team-member__bio {
+	margin-top: 1rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.team-member__specialisms {
+	margin-top: 1.25rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+/* ─────────────────────────────────────────────────── registration ───── */
+
+.about-registration {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: 2rem;
+	row-gap: 2rem;
+}
+
+.about-registration__intro,
+.about-registration__list {
+	grid-column: span 12;
+}
+
+@media (width >= 64rem) {
+	.about-registration__intro {
+		grid-column: span 5;
+	}
+
+	.about-registration__list {
+		grid-column: 7 / span 6;
+	}
+}
+
+.about-registration__title {
+	margin-top: 1rem;
+	color: var(--color-ink);
+}
+
+.about-registration__body {
+	margin-top: 1.5rem;
+	max-width: 28rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.about-registration__action {
+	margin-top: 2rem;
+}

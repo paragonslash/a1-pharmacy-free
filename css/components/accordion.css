@@ -1,0 +1,117 @@
+/*
+ * Disclosure, built on <details>/<summary>.
+ *
+ * Native semantics mean it works with JavaScript switched off and its contents
+ * stay findable by the browser's own in-page search. The open/close animation
+ * is a grid-template-rows transition, which needs no height measurement.
+ */
+
+.accordion {
+	border-bottom: 1px solid var(--ink-10);
+}
+
+.accordion__summary {
+	display: flex;
+	cursor: pointer;
+	list-style: none;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding-block: 1.25rem;
+	text-align: left;
+}
+
+.accordion__summary::-webkit-details-marker {
+	display: none;
+}
+
+.accordion__title {
+	font-family: var(--font-display);
+	font-size: 1.0625rem;
+	font-weight: 600;
+	font-stretch: 96%;
+	letter-spacing: -0.015em;
+	color: var(--color-ink);
+}
+
+.accordion--warning .accordion__title {
+	color: var(--color-danger);
+}
+
+/* A plus that rotates into a minus. Two absolutely positioned rules. */
+.accordion__marker {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 1.75rem;
+	height: 1.75rem;
+	flex: none;
+	box-shadow: inset 0 0 0 1px var(--ink-12);
+	transition:
+		background-color var(--duration-calm) var(--ease-linear-out),
+		box-shadow var(--duration-calm) var(--ease-linear-out);
+}
+
+.accordion[open] .accordion__marker {
+	background-color: var(--color-ink);
+	box-shadow: inset 0 0 0 1px var(--color-ink);
+}
+
+.accordion__marker::before,
+.accordion__marker::after {
+	content: '';
+	position: absolute;
+	background-color: var(--color-ink-2);
+	transition:
+		background-color var(--duration-calm) var(--ease-linear-out),
+		transform var(--duration-calm) var(--ease-precise);
+}
+
+.accordion__marker::before {
+	width: 0.75rem;
+	height: 1px;
+}
+
+.accordion__marker::after {
+	width: 1px;
+	height: 0.75rem;
+}
+
+.accordion[open] .accordion__marker::before,
+.accordion[open] .accordion__marker::after {
+	background-color: #fff;
+}
+
+.accordion[open] .accordion__marker::after {
+	transform: rotate(90deg);
+}
+
+/*
+ * The body animates its own height. `<details>` only toggles display, so the
+ * transition is carried by an inner grid whose single row grows from 0fr to 1fr.
+ */
+.accordion__body {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 420ms var(--ease-precise);
+}
+
+.accordion[open] .accordion__body {
+	grid-template-rows: 1fr;
+}
+
+.accordion__body-inner {
+	overflow: hidden;
+}
+
+.accordion__content {
+	padding-bottom: 1.5rem;
+	padding-right: 2.5rem;
+	font-size: 0.9375rem;
+	line-height: 1.7;
+	color: var(--color-ink-2);
+}
+
+.accordion__content > * + * {
+	margin-top: 0.75rem;
+}
