@@ -13,6 +13,18 @@ update affects anything you have edited.
 
 ---
 
+## 1.1.1 — 31 August 2026
+
+- **The hero no longer pauses on hover.** It still pauses while focus is inside
+  it and while the tab is hidden, and still never starts under
+  `prefers-reduced-motion` — but a pointer resting over it is not a reason to
+  stop. The hero is full-bleed, so on most screens the cursor is over it
+  whatever the reader is doing, and the commonest way to meet the carousel was
+  to watch it sit still. The pause button is unchanged for anyone who does want
+  it stopped. Files: `js/slider.js`.
+
+---
+
 ## 1.1.0 — 20 August 2026
 
 - **Shop pagination.** The results now page 12 at a time, over the cards already
