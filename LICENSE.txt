@@ -21,8 +21,26 @@ WHAT YOU MAY NOT DO
   * Remove or hide the "Get the full template" links in the header and footer.
     They are the price of the free edition. Removing them ends your licence.
     The full edition has no such links, and no such condition.
-  * Sell, sub-licence or give away the template itself, modified or not.
-  * Redistribute these files as a template, theme, builder or starter kit.
+  * Sell or sub-licence the template itself, modified or not.
+  * Redistribute a modified copy as a template, theme, builder or starter kit.
+
+
+TEMPLATE DIRECTORIES AND FREEBIE SITES
+--------------------------------------
+
+You may host and distribute this archive, at no charge, provided that:
+
+  * it is the complete, unmodified archive as published;
+  * the "Get the full template" links are intact; and
+  * you do not present it as your own work.
+
+No permission is needed and no arrangement has to be made. This is here because
+the free edition exists to travel, and a licence that forbade the sites built
+to carry it would have been working against its own purpose.
+
+The current release is always at
+https://paragonslash.gumroad.com/l/a1pharmacy
+and a copy you are holding may be older than that.
 
 
 NO WARRANTY

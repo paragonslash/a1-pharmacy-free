@@ -66,4 +66,4 @@ The images are generated placeholders, not photography. Replace them.
 
 ---
 
-Version 1.1.2 · [Changelog](CHANGELOG.md)
+Version 1.1.3 · [Changelog](CHANGELOG.md)

@@ -13,6 +13,20 @@ update affects anything you have edited.
 
 ---
 
+## 1.1.3 — 31 August 2026
+
+- **Free edition licence: template directories may now host it.** The old terms
+  forbade redistributing the files at all, which ruled out exactly the sites
+  built to carry free templates — a licence working against the purpose of the
+  thing it covered. Hosting the complete, unmodified archive is now explicitly
+  allowed, with no permission needed, provided the "Get the full template" links
+  are intact and it is not passed off as someone else's work. Selling,
+  sub-licensing and redistributing modified copies are still out.
+  **The full edition's licence is unchanged.** Files: `LICENSE.txt` (free
+  edition only).
+
+---
+
 ## 1.1.2 — 31 August 2026
 
 - **Free edition: one link to the store, not a hundred and seventy-two.** Every
