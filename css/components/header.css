@@ -553,3 +553,45 @@
 		color: var(--color-ink);
 	}
 }
+
+/* ─────────────────────────────────────────────── the demo's navigation ───
+ *
+ * Added by build.js --github, and present only in the GitHub copy. The nav
+ * items with no page behind them go nowhere here, and the one link that does
+ * leave is the one that says where to.
+ */
+
+/* Stood down: no page, no store, no pointer. Still legible — these name the
+   pages the full edition has, which is the point of leaving them in the bar. */
+.nav-link--inert,
+a.nav-link--inert:hover {
+	color: var(--color-ink-3);
+	cursor: default;
+	opacity: 0.5;
+}
+
+.site-header--over-media .nav-link--inert,
+.site-header--over-media a.nav-link--inert:hover {
+	color: var(--paper-70);
+}
+
+/* The one live link in the bar. A pill rather than accent text: #cdeb3f is
+   bright enough to carry on the dark over-media header and far too light to
+   read as text on the white one, and this link has to work on both. */
+.nav-link--upgrade {
+	background: var(--color-accent);
+	color: var(--color-signal-dark);
+	padding: 0.45em 0.85em;
+	border-radius: 2px;
+	transition: background var(--duration-calm) var(--ease-linear-out);
+}
+
+.nav-link--upgrade:hover,
+.site-header--over-media .nav-link--upgrade:hover {
+	background: var(--color-accent-dark);
+	color: var(--color-signal-dark);
+}
+
+.site-header--over-media .nav-link--upgrade {
+	color: var(--color-signal-dark);
+}
